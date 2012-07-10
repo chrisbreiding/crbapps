@@ -78,10 +78,10 @@
     }
 
     // Initialize
-    $_$('myTextArea').focus();
+    $_$('list').focus();
     $_$('randomizer').addHandler('click', function(e) {
         e.preventDefault();
-        var contents = $_$('myTextArea').escape().split("\n").shuffle();
+        var contents = $_$('list').escape().split("\n").shuffle();
         $_$('results').print(contents);
     });
 

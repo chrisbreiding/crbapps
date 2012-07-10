@@ -15,7 +15,8 @@ h2 {
     margin-bottom: 5px;
 }
 
-#myTextArea {
+.list {
+    background: transparent;
     border: solid 5px #000;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 1.4em;
@@ -26,7 +27,7 @@ h2 {
     height: 200px;
 }
 
-#myTextArea:focus {
+.list:focus {
     border: dashed 5px #000;
     outline: none;
 }
@@ -56,7 +57,7 @@ a:active {
     background: #666;
 }
 
-#results {
+.results {
     border: dashed 5px #000;
     font-size: 1.4em;
     line-height: 1.5em;
