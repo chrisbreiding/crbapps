@@ -22,7 +22,11 @@ One of my first experiments creating a JavaScript "library."
 
 Created as a quick way to get a "random enough" password.
 
-    Obtain a random password. Ensures there is a lowercase letter, upperacase letter, and number. Length defaults to 14 characters. Add a numeric second segment for a custom length (eg, http://crbapps.com/randpass/25)
+    Obtain a random password.
+
+    - Ensures there is a lowercase letter, uppercase letter, and number
+    - Length defaults to 14 characters
+    - Add a numeric second segment for a custom length (eg, http://crbapps.com/randpass/25)
 
 [View app](http://crbapps.com/randpass)
 
