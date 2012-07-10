@@ -13,6 +13,17 @@
         for( var i = 0, len = arr.length; i < len; i++ ) {
             func( arr[i] );
         }
+        return arr;
+    };
+
+    $_$.map = function (arr, func) {
+        var newArr = [],
+            i = 0,
+            len = arr.length;
+        for( i; i < len; i++ ) {
+            ret.push( func(arr[i]));
+        }
+        return newArr;
     };
 
     $_$.prototype = {
