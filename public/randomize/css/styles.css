@@ -1,0 +1,64 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 62.5%;
+    margin: 0 auto;
+    padding: 30px;
+    width: 400px;
+}
+
+h2 {
+    font-size: 1.8em;
+    font-weight: 200;
+    margin-bottom: 5px;
+}
+
+#myTextArea {
+    border: solid 5px #000;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    margin: 0 0 10px;
+    padding: 15px;
+    width: 370px;
+    height: 200px;
+}
+
+#myTextArea:focus {
+    border: dashed 5px #000;
+    outline: none;
+}
+
+a {
+    background: #000;
+    border: solid 5px #000;
+    color: #FFF;
+    display: block;
+    font-size: 1.4em;
+    margin: 0 0 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 400px;
+    height: 30px;
+    line-height: 30px;
+}
+
+a:hover,
+a:focus {
+    background: #333;
+    border: dashed 5px #FFF;
+    outline: none;
+}
+
+a:active {
+    background: #666;
+}
+
+#results {
+    border: dashed 5px #000;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    padding: 15px;
+    width: 370px;
+}

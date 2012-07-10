@@ -1,0 +1,14 @@
+body {
+    background: #f8f8f8;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 20px 0;
+    width: 960px;
+}
+
+.alignright {
+    float: right;
+    margin: 0 0 10px 15px;
+}
