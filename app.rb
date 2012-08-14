@@ -41,10 +41,6 @@ get '/scorekeeper/?' do
   erb :scorekeeper
 end
 
-get '/mobile-test/?' do
-  erb :mobile_test, layout: false
-end
-
 not_found do
   @title = "Page Not Found"
   status 404
