@@ -41,7 +41,7 @@ get '/scorekeeper/?' do
   erb :scorekeeper
 end
 
-get '/mobile-test' do
+get '/mobile-test/?' do
   erb :mobile_test, layout: false
 end
 
