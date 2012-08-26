@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/calculator/css/styles.css" />
+</head>
+<body>
+
+    <div class="container" ng-controller="CalcCtrl">
+
+        <ul class="calculator clearfix">
+            <li class="result">{{result}}</li>
+            <li ng-repeat="button in buttons" class="{{button.type}}" ng-click="buttonClick(button)">
+                {{button.value}}
+            </li>
+            <li ng-click="calculate()" class="enter">=</li>
+        </ul>
+
+    </div>
+
+    <script src="/vendor/js/angular-1.0.1.min.js"></script>
+    <script src="/calculator/js/calculator.js"></script>
+
+    <script src="/shared/js/google-analytics.js"></script>
+
+</body>
+</html>

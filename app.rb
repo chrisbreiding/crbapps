@@ -22,6 +22,10 @@ get '/' do
   erb :aquarium
 end
 
+get '/calculator/?' do
+  erb :calculator, layout: false
+end
+
 get '/randomize/?' do
   @title = 'List Randomizer'
   @asset_path = 'randomize'
