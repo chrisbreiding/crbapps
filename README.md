@@ -14,7 +14,7 @@ Created while learning Backbone.
 
 Created while learning Angular.
 
-    Addition, subtration, multiplication, subtraction. It's all there.
+    Addition, subtraction, multiplication, subtraction. It's all there.
 
 [View app](http://crbapps.com/calculator)
 
