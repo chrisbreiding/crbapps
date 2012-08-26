@@ -4,15 +4,23 @@ Mini-apps, experiments, and fun stuff
 
 ### Aquarium
 
-My first experiment with Backbone.
+Created while learning Backbone.
 
     Play with fish. Create them, move them around, change their color.
 
 [View app](http://crbapps.com)
 
+### Calculator
+
+Created while learning Angular.
+
+    Addition, subtration, multiplication, subtraction. It's all there.
+
+[View app](http://crbapps.com/calculator)
+
 ### List Randomizer
 
-One of my first experiments creating a JavaScript "library."
+Messing around with creating a jQuery-like "library." Not very pretty. Simply an experiment.
 
     Randomize a list.
 
