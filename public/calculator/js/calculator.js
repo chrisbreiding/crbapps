@@ -1,32 +1,10 @@
 function CalcCtrl ($scope) {
-    // $scope.result = '0';
-
-    var reduce = function (arr, base, func) {
-        for( var i = 0, len = arr.length; i < len; i++ ) {
-            base = func(base, arr[i]);
-        }
-        return base;
-    };
 
     var op = {
         '+' : function (a, b) { return a + b; },
         '-' : function (a, b) { return a - b; },
         '*' : function (a, b) { return a * b; },
         '/' : function (a, b) { return a / b; }
-    };
-
-    var calc = function (type, numbers) {
-        if(Object.prototype.toString.call(numbers) !== '[object Array]') {
-            throw 'Invalid 2nd Argument: The 2nd argument must be an array of numbers.';
-        }
-
-        if(!op[type]) {
-            throw 'Invalid Operator: The operator "' + type + '" does not exist.';
-        }
-
-        var base = numbers.shift();
-
-        return reduce(numbers, base, op[type]);
     };
 
     var prevType = null;
@@ -114,7 +92,7 @@ function CalcCtrl ($scope) {
             num1 = parseFloat(cC[0].value);
             operator = cC[1].value;
             num2 = parseFloat(cC[2].value);
-            cC[2].value = calc(operator, [num1, num2]);
+            cC[2].value = op[operator](num1, num2);
             cC.shift();
             cC.shift();
         }
