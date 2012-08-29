@@ -1,8 +1,10 @@
 function CalcCtrl ($scope) {
 
+    var ACCURACY = 1000;
+
     var op = {
-        '+' : function (a, b) { return a + b; },
-        '-' : function (a, b) { return a - b; },
+        '+' : function (a, b) { return (a * ACCURACY + b * ACCURACY) / ACCURACY; },
+        '-' : function (a, b) { return (a * ACCURACY - b * ACCURACY) / ACCURACY; },
         '*' : function (a, b) { return a * b; },
         '/' : function (a, b) { return a / b; }
     };
@@ -57,8 +59,13 @@ function CalcCtrl ($scope) {
             }
         }
 
-        if( value === '.' && /\./.test(cC[cC.length - 1].value) ) {
-            if( prevType !== 'calculation') return;
+        if( value === '.') {
+            if ( cC.length > 1 && /\./.test(cC[cC.length - 1].value) && prevType !== 'calc') {
+                return;
+            }
+            if( !prevType || prevType === 'op' || prevType === 'calc' ) {
+                value = '0.';
+            }
         }
 
         if( cC.length === 1 && cC[0].value === '-' && type === 'op' ) {
