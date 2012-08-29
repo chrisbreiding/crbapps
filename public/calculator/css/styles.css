@@ -29,12 +29,12 @@ body {
     background: #a3a3a3;
 }
 
-li.operator {
+li.op {
     background: #333;
     color: #e3e3e3;
 }
 
-li.operator:hover {
+li.op:hover {
     background: #555;
 }
 

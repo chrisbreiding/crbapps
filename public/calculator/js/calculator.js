@@ -9,25 +9,30 @@ function CalcCtrl ($scope) {
 
     var prevType = null;
 
+    var Button = function (value, type) {
+        this.value = value;
+        this.type = type;
+    };
+
     $scope.result = '0';
     $scope.currentCalculation = [];
     $scope.buttons = [
-        { value: '7', type: 'number' },
-        { value: '8', type: 'number' },
-        { value: '9', type: 'number' },
-        { value: '+', type: 'operator' },
-        { value: '4', type: 'number' },
-        { value: '5', type: 'number' },
-        { value: '6', type: 'number' },
-        { value: '-', type: 'operator' },
-        { value: '1', type: 'number' },
-        { value: '2', type: 'number' },
-        { value: '3', type: 'number' },
-        { value: '/', type: 'operator' },
-        { value: '0', type: 'number' },
-        { value: '.', type: 'number' },
-        { value: 'C', type: 'operator' },
-        { value: '*', type: 'operator' }
+        new Button('7', 'num'),
+        new Button('8', 'num'),
+        new Button('9', 'num'),
+        new Button('+', 'op' ),
+        new Button('4', 'num'),
+        new Button('5', 'num'),
+        new Button('6', 'num'),
+        new Button('-', 'op' ),
+        new Button('1', 'num'),
+        new Button('2', 'num'),
+        new Button('3', 'num'),
+        new Button('/', 'op' ),
+        new Button('0', 'num'),
+        new Button('.', 'num'),
+        new Button('C', 'op' ),
+        new Button('*', 'op' )
     ];
 
     $scope.buttonClick = function (button) {
@@ -45,9 +50,9 @@ function CalcCtrl ($scope) {
 
         if( !cC.length ) {
             if( value === '-' ) {
-                type = 'number';
+                type = 'num';
             }
-            if( type === 'operator' ) {
+            if( type === 'op' ) {
                 return;
             }
         }
@@ -56,14 +61,14 @@ function CalcCtrl ($scope) {
             if( prevType !== 'calculation') return;
         }
 
-        if( cC.length === 1 && cC[0].value === '-' && type === 'operator' ) {
+        if( cC.length === 1 && cC[0].value === '-' && type === 'op' ) {
             cC = [];
-            prevType = 'number';
+            prevType = 'num';
             return;
         }
 
-        if( prevType === 'calculation' ) {
-            if( type === 'number' ) {
+        if( prevType === 'calc' ) {
+            if( type === 'num' ) {
                 cC[0].value = value;
             } else {
                 cC.push({
@@ -73,7 +78,7 @@ function CalcCtrl ($scope) {
             }
         } else if( prevType === type ) {
             lastInput = cC[cC.length - 1];
-            lastInput.value = type === 'number' ? lastInput.value + value : value;
+            lastInput.value = type === 'num' ? lastInput.value + value : value;
         } else {
             cC.push({
                 type  : type,
@@ -96,7 +101,7 @@ function CalcCtrl ($scope) {
             cC.shift();
             cC.shift();
         }
-        prevType = 'calculation';
+        prevType = 'calc';
         $scope.result = cC[0].value;
     };
 }
