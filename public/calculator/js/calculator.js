@@ -1,40 +1,117 @@
 function CalcCtrl ($scope) {
 
-    var ACCURACY = 1000;
+    var calculator = {
+        ACCURACY : 1000,
+        prevType : null,
 
-    var op = {
-        '+' : function (a, b) { return (a * ACCURACY + b * ACCURACY) / ACCURACY; },
-        '-' : function (a, b) { return (a * ACCURACY - b * ACCURACY) / ACCURACY; },
-        '*' : function (a, b) { return a * b; },
-        '/' : function (a, b) { return a / b; }
+        op : {
+            '+' : function (a, b) { return (a * this.ACCURACY + b * this.ACCURACY) / this.ACCURACY; },
+            '-' : function (a, b) { return (a * this.ACCURACY - b * this.ACCURACY) / this.ACCURACY; },
+            '*' : function (a, b) { return a * b; },
+            '/' : function (a, b) { return a / b; }
+        },
+
+        Calculation : function () {
+            this.reset();
+        },
+
+        Number : function (value) {
+            this.value = value;
+            this.type = 'num';
+        },
+
+        Operator : function (value) {
+            this.value = value;
+            this.type = 'op';
+        },
+
+        Clear : function () {
+            this.value = 'C';
+            this.type = 'op';
+        }
     };
 
-    var prevType = null;
+    calculator.Calculation.prototype = {
+        reset : function () {
+            this.setResult('0', 'calc');
+            this.collection = [];
+        },
 
-    var Button = function (value, type) {
-        this.value = value;
-        this.type = type;
+        setResult : function (value, type) {
+            this.result = {
+                value : value || this.result.value,
+                type : type || this.result.type
+            };
+            $scope.result = this.result.value;
+        },
+
+        calculate : function () {
+            var coll = this.collection,
+                num1, operator, num2;
+
+            if( !coll.length ) {
+                return;
+            }
+
+            while( coll.length > 1 ) {
+                num1 = parseFloat(coll[0].value);
+                operator = coll[1].value;
+                num2 = parseFloat(coll[2].value);
+                coll[2].value = op[operator](num1, num2);
+                coll.shift();
+                coll.shift();
+            }
+
+            this.setResult( coll[0].value, 'calc' );
+        }
     };
 
-    $scope.result = '0';
-    $scope.currentCalculation = [];
+    calculator.Number.prototype = {
+        calculate : function () {
+
+        }
+    };
+
+    calculator.Operator.prototype = {
+        calculate : function () {
+            if( !calculation.collection.length ) {
+                if( this.value === '-' ) {
+                    calculation.setResult('-', 'num');
+                } else if( this.type === 'op' ) {
+                    return;
+                }
+            }
+
+
+        }
+    };
+
+    calculator.Clear.prototype = {
+        calculate : function () {
+            calculation.reset();
+        }
+    };
+
+    var calculation = new calculator.Calculation();
+
+    $scope.currentCalculation = calculation.collection;
     $scope.buttons = [
-        new Button('7', 'num'),
-        new Button('8', 'num'),
-        new Button('9', 'num'),
-        new Button('+', 'op' ),
-        new Button('4', 'num'),
-        new Button('5', 'num'),
-        new Button('6', 'num'),
-        new Button('-', 'op' ),
-        new Button('1', 'num'),
-        new Button('2', 'num'),
-        new Button('3', 'num'),
-        new Button('/', 'op' ),
-        new Button('0', 'num'),
-        new Button('.', 'num'),
-        new Button('C', 'op' ),
-        new Button('*', 'op' )
+        new calculator.Number('7'),
+        new calculator.Number('8'),
+        new calculator.Number('9'),
+        new calculator.Operator('+'),
+        new calculator.Number('4'),
+        new calculator.Number('5'),
+        new calculator.Number('6'),
+        new calculator.Operator('-'),
+        new calculator.Number('1'),
+        new calculator.Number('2'),
+        new calculator.Number('3'),
+        new calculator.Operator('/'),
+        new calculator.Number('0'),
+        new calculator.Number('.'),
+        new calculator.Clear(),
+        new calculator.Operator('*' )
     ];
 
     $scope.buttonClick = function (button) {
@@ -43,21 +120,9 @@ function CalcCtrl ($scope) {
             type = button.type,
             value = button.value;
 
-        if( value === 'C' ) {
-            $scope.result = '0';
-            $scope.currentCalculation = [];
-            prevType = null;
-            return;
-        }
+        button.calculate();
 
-        if( !cC.length ) {
-            if( value === '-' ) {
-                type = 'num';
-            }
-            if( type === 'op' ) {
-                return;
-            }
-        }
+        return;
 
         if( value === '.') {
             if ( cC.length > 1 && /\./.test(cC[cC.length - 1].value) && prevType !== 'calc') {
@@ -97,18 +162,5 @@ function CalcCtrl ($scope) {
         prevType = type;
     };
 
-    $scope.calculate = function () {
-        var cC = $scope.currentCalculation,
-            num1, operator, num2;
-        while( cC.length > 1 ) {
-            num1 = parseFloat(cC[0].value);
-            operator = cC[1].value;
-            num2 = parseFloat(cC[2].value);
-            cC[2].value = op[operator](num1, num2);
-            cC.shift();
-            cC.shift();
-        }
-        prevType = 'calc';
-        $scope.result = cC[0].value;
-    };
+    $scope.calculate = calculation.calculate.bind(calculation);
 }
