@@ -18,6 +18,7 @@
             addEvents : function () {
                 $('body')
                     .on('keypress', '.score', this.updateScore)
+                    .on('submit', 'form', this.formSubmit)
                     .on('click', '.close', this.removeBoard);
 
                 $('#plus').click(this.bind(this.addBoard, this));
@@ -42,6 +43,10 @@
 
                     $(this).parent('form').siblings('.total').html(total);
                 }
+            },
+
+            formSubmit : function (e) {
+                e.preventDefault();
             },
 
             boardTemplate : function () {
