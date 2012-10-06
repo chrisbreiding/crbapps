@@ -17,6 +17,12 @@ helpers do
 end
 
 get '/' do
+  @title = 'CRB Apps'
+  @asset_path = 'index'
+  erb :index
+end
+
+get '/aquarium/?' do
   @title = 'Aquarium'
   @asset_path = 'aquarium'
   erb :aquarium
