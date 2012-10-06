@@ -2,13 +2,15 @@
 
 Mini-apps, experiments, and fun stuff
 
+[http://www.crbapps.com](http://www.crbapps.com)
+
 ### Aquarium
 
 Created while learning Backbone.
 
     Play with fish. Create them, move them around, change their color.
 
-[View app](http://crbapps.com)
+[View app](http://crbapps.com/aquarium)
 
 ### Calculator
 
