@@ -1,12 +1,12 @@
 ## CRB Apps
 
-Mini-apps, experiments, and fun stuff
+Single-page mini-apps, experiments, and fun stuff
 
 [http://www.crbapps.com](http://www.crbapps.com)
 
 ### Aquarium
 
-Created while learning Backbone.
+Experiment using Backbone.
 
     Play with fish. Create them, move them around, change their color.
 
@@ -14,7 +14,7 @@ Created while learning Backbone.
 
 ### Calculator
 
-Created while learning Angular.
+Experiment using Angular.
 
     Addition, subtraction, multiplication, division - it's all there.
 
@@ -22,7 +22,7 @@ Created while learning Angular.
 
 ### List Randomizer
 
-Messing around with creating a jQuery-like "library." Not very pretty. Simply an experiment.
+First time messing around to create a "library."
 
     Randomize a list.
 
