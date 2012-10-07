@@ -1,9 +1,17 @@
 body {
 	background: lightblue;
+    padding-top: 0;
 }
 
 #aquarium {
 	position: relative;
+}
+
+#new-fish {
+    position: absolute;
+    top: 40px;
+    left: 8px;
+    z-index: 999;
 }
 
 .fish {

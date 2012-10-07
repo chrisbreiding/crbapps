@@ -1,92 +1,95 @@
 body {
-	background: #A38C3F;
-	margin: 20px;
+    background: #A38C3F;
 }
 
 .scoreboard {
-	display: block;
-	float: left;
-	margin-right: 10px;
-	position: relative;
-	width: 120px;
+    display: block;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    position: relative;
+    width: 120px;
 }
 
-	input,
-	textarea {
-		border: none;
-		display: block;
-		margin: 0;
-	}
+    input,
+    textarea {
+        border: none;
+        display: block;
+        margin: 0;
+    }
 
-	input {
-		background: #AD7515;
-		color: #FFF;
-		-moz-border-radius: 3px 3px 0 0;
-		-webkit-border-radius: 3px 3px 0 0;
-		border-radius: 3px 3px 0 0;
-		padding: 5px 10px;
-		width: 100px;
-		height: 15px;
-		line-height: 15px;
-	}
+    input {
+        background: #AD7515;
+        color: #FFF;
+        -moz-border-radius: 3px 3px 0 0;
+        -webkit-border-radius: 3px 3px 0 0;
+        border-radius: 3px 3px 0 0;
+        padding: 5px 10px;
+        width: 100px;
+        height: 15px;
+        line-height: 15px;
+    }
 
-	textarea {
-		background: #D6CBA6;
-		-moz-border-radius: 0 0 3px 3px;
-		-webkit-border-radius: 0 0 3px 3px;
-		border-radius: 0 0 3px 3px;
-		padding: 10px;
-		width: 100px;
-		height: 300px;
-	}
+    textarea {
+        background: #D6CBA6;
+        -moz-border-radius: 0 0 3px 3px;
+        -webkit-border-radius: 0 0 3px 3px;
+        border-radius: 0 0 3px 3px;
+        padding: 10px;
+        width: 100px;
+        height: 300px;
+    }
 
-	.total {
-		background: #AD7515;
-		-moz-border-radius: 3px;
-		-webkit-border-radius: 3px;
-		border-radius: 3px;
-		color: #FFF;
-		height: 24px;
-		line-height: 24px;
-		margin: 10px 0;
-		padding: 5px 10px;
-		width: 100px;
-	}
+    .total {
+        background: #AD7515;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        color: #FFF;
+        height: 24px;
+        line-height: 24px;
+        margin: 10px 0;
+        padding: 5px 10px;
+        width: 100px;
+    }
 
-	.close {
-		-moz-border-radius: 50px;
-		-webkit-border-radius: 50px;
-		border-radius: 50px;
-		border: solid 1px #AD7515;
-		color: #AD7515;
-		display: block;
-		font-size: 1.5em;
-		position: absolute;
-			top: 4px;
-			right: 4px;
-		text-align: center;
-		text-decoration: none;
-		width: 15px;
-		height: 15px;
-		line-height: 12px;
-	}
+    .close {
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        border: solid 1px #AD7515;
+        color: #AD7515;
+        display: block;
+        font-size: 1.5em;
+        position: absolute;
+            top: 4px;
+            right: 4px;
+        text-align: center;
+        text-decoration: none;
+        width: 15px;
+        height: 15px;
+        line-height: 12px;
+    }
 
-	.close:hover {
-		border-color: #D6CBA6;
-		color: #D6CBA6;
-	}
+    .close:hover {
+        border-color: #D6CBA6;
+        color: #D6CBA6;
+    }
 
 .plus {
-	color: #D6CBA6;
-	float: left;
-	font-size: 2.5em;
-	position: relative;
-	text-decoration: none;
-	width: 25px;
-	height: 25px;
-	line-height: 25px;
+    color: #D6CBA6;
+    float: left;
+    font-size: 2.5em;
+    margin-top: 20px;
+    margin-left: 20px;
+    position: relative;
+    text-decoration: none;
+    width: 25px;
+    height: 25px;
+    line-height: 20px;
 }
 
-.plus:hover {
-	color: #AD7515;
+.plus:hover,
+.plus:focus {
+    color: #AD7515;
 }
