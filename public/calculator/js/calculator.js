@@ -1,4 +1,36 @@
-function CalcCtrl ($scope) {
+(function (ng) {
+
+    var Events = {
+        events : {},
+        on : function (event, handler) {
+            this.events[event] = this.events[event] || [];
+            this.events[event].push(handler);
+        },
+        off : function (event) {
+            delete this.events[event];
+        },
+        trigger : function (event, arg) {
+            var handlers = this.events[event],
+                i = 0,
+                len;
+
+            if( handlers ) {
+                len = handlers.length;
+
+                for( i; i < len; i++ ) {
+                    handlers[i].call(this, arg);
+                }
+            }
+        }
+    };
+
+    var extend = function (target, source) {
+        for ( var prop in source ) {
+            if ( source.hasOwnProperty(prop) ) {
+                target[prop] = source[prop];
+            }
+        }
+    };
 
     var calculator = {
         ACCURACY : 1000,
@@ -30,23 +62,25 @@ function CalcCtrl ($scope) {
         }
     };
 
-    calculator.Calculation.prototype = {
+    extend(calculator, Events);
+
+    extend(calculator.Calculation.prototype, {
         reset : function () {
             this.result = {
                 value : '0',
                 type : null
             };
             this.collection = [];
-            $scope.result = '0';
+            calculator.trigger('result:change', '0');
         },
 
         setResult : function (value, type) {
-            // potential issue: will never be able to set properties to null
+            // issue: will never be able to set properties to null
             this.result = {
                 value : value || this.result.value,
                 type : type || this.result.type
             };
-            $scope.result = this.result.value;
+            calculator.trigger('result:change', this.result.value);
         },
 
         calculate : function () {
@@ -68,9 +102,9 @@ function CalcCtrl ($scope) {
 
             this.setResult( coll[0].value, 'calc' );
         }
-    };
+    });
 
-    calculator.Number.prototype = {
+    extend(calculator.Number.prototype, {
         process : function () {
             var cC = calculation.collection,
                 prevType = calculation.result.type,
@@ -100,9 +134,9 @@ function CalcCtrl ($scope) {
 
             calculation.setResult(value, type);
         }
-    };
+    });
 
-    calculator.Operator.prototype = {
+    extend(calculator.Operator.prototype, {
         process : function () {
             var cC = calculation.collection,
                 prevType = calculation.result.type,
@@ -127,45 +161,59 @@ function CalcCtrl ($scope) {
 
             calculation.setResult(value, type);
         }
-    };
+    });
 
-    calculator.Clear.prototype = {
+    extend(calculator.Clear.prototype, {
         process : function () {
             calculation.reset();
         }
-    };
+    });
 
-    var calculation = new calculator.Calculation();
+    var calculation;
 
-    $scope.buttons = [
-        new calculator.Number('7'),
-        new calculator.Number('8'),
-        new calculator.Number('9'),
-        new calculator.Operator('+'),
-        new calculator.Number('4'),
-        new calculator.Number('5'),
-        new calculator.Number('6'),
-        new calculator.Operator('-'),
-        new calculator.Number('1'),
-        new calculator.Number('2'),
-        new calculator.Number('3'),
-        new calculator.Operator('/'),
-        new calculator.Number('0'),
-        new calculator.Number('.'),
-        new calculator.Clear(),
-        new calculator.Operator('*' )
-    ];
+    var calculatorApp = ng.module('calculatorApp', []);
 
-    $scope.buttonClick = function (button) {
-        button.process();
-    };
+    calculatorApp.controller('CalcCtrl', function CalcCtrl ($scope) {
 
-    $scope.calculate = function () {
-        calculation.calculate();
-    };
+        $scope.buttons = [
+            new calculator.Number('7'),
+            new calculator.Number('8'),
+            new calculator.Number('9'),
+            new calculator.Operator('+'),
+            new calculator.Number('4'),
+            new calculator.Number('5'),
+            new calculator.Number('6'),
+            new calculator.Operator('-'),
+            new calculator.Number('1'),
+            new calculator.Number('2'),
+            new calculator.Number('3'),
+            new calculator.Operator('/'),
+            new calculator.Number('0'),
+            new calculator.Number('.'),
+            new calculator.Clear(),
+            new calculator.Operator('*' )
+        ];
 
-}
+        $scope.buttonClick = function (button) {
+            button.process();
+        };
+
+        $scope.calculate = function () {
+            calculation.calculate();
+        };
+
+        calculator.on('result:change', function (result) {
+            $scope.result = result;
+        });
+
+        calculation = new calculator.Calculation();
+
+    });
+
+}(angular));
 
 // TODO
+// - add tests
 // - add ability to continually hit = and repeat last action
 // - add ERROR display when dividing by 0, and handle next interaction
+// - replace improvised events and extend with more robust solution?
