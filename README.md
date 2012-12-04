@@ -14,7 +14,7 @@ Experiment using Backbone.
 
 ### Calculator
 
-Experiment using Angular.
+Experiment using AngularJS and RequireJS.
 
     Addition, subtraction, multiplication, division - it's all there.
 
@@ -22,7 +22,7 @@ Experiment using Angular.
 
 ### List Randomizer
 
-First time messing around to create a "library."
+First time messing around to create a "library" with no dependencies.
 
     Randomize a list.
 
