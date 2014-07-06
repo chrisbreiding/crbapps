@@ -1,8 +1,8 @@
 boardTemplate = '
   <div class="board">
-    <input type="text" placeholder="name..." />
+    <input type="text" placeholder="name..." tabindex="1" />
     <button class="close">&times;</button>
-    <textarea class="score" placeholder="scores..."></textarea>
+    <textarea class="score" placeholder="scores..." tabindex="2"></textarea>
     <div class="total">0</div>
   </div>
 '
