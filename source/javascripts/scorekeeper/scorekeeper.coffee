@@ -25,16 +25,15 @@ class Board
 
   bindEvents: ->
     @$el
-      .on 'keypress', '.score', @calculateScore
+      .on 'keyup', '.score', @calculateScore
       .on 'click', '.close', @remove
 
   calculateScore: (e) =>
-    if e.keyCode is 13
-      scores = $(e.target).val().split '\n'
-      total = 0
-      total += +score for score in scores when not isNaN(+score)
+    scores = $(e.target).val().split '\n'
+    total = 0
+    total += +score for score in scores when not isNaN(+score)
 
-      @updateScore total
+    @updateScore total
 
   updateScore: (score) ->
     @$el.find('.total').text score
