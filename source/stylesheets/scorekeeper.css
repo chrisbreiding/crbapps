@@ -11,6 +11,13 @@ body {
   width: 120px;
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
 input,
 textarea {
   border: none;
@@ -63,6 +70,7 @@ textarea {
   line-height: 12px;
 }
 
+.close:hover,
 .close:hover {
   border-color: #D6CBA6;
   color: #D6CBA6;
@@ -76,9 +84,9 @@ textarea {
   margin-left: 20px;
   position: relative;
   text-decoration: none;
-  width: 25px;
-  height: 25px;
-  line-height: 20px;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
 }
 
 .plus:hover,
