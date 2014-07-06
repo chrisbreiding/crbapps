@@ -1,9 +1,9 @@
 boardTemplate = '
-  <div class="scoreboard">
-    <input type="text" />
-    <textarea class="score"></textarea>
-    <div class="total"></div>
-    <button class="close">-</button>
+  <div class="board">
+    <input type="text" placeholder="name..." />
+    <button class="close">&times;</button>
+    <textarea class="score" placeholder="scores..."></textarea>
+    <div class="total">0</div>
   </div>
 '
 
