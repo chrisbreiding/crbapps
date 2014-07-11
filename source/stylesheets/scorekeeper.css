@@ -38,8 +38,8 @@ button {
   outline: none;
 }
 
-input,
-textarea,
+.name,
+.scores,
 .total {
   border: none;
   display: block;
@@ -51,7 +51,7 @@ textarea,
   width: 100%;
 }
 
-input {
+.name {
   background: #28361B;
   color: #FFF;
   height: 2.6em;
@@ -60,20 +60,43 @@ input {
   top: 0;
 }
 
-input:focus {
+.name:focus {
   background: #506B38;
 }
 
-textarea {
+.scores {
   background: #d3d3d3;
   color: #28361B;
-  padding: .8em;
+  cursor: cell;
+  padding: .5em;
   top: 2.6em;
   bottom: 2.6em;
 }
 
-textarea:focus {
-  background: #FFF;
+.score {
+  border-radius: 3px;
+}
+
+.score:hover {
+  background: #b3b3b3;
+}
+
+.score.editing {
+  background: #626262;
+}
+
+.score input {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1em;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+}
+
+.editing input {
+  color: #FFF;
 }
 
 .total {
