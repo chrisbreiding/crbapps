@@ -137,7 +137,7 @@ class Board
 
   editLastScore: =>
     lastScore = @scores[@scores.length - 1]
-    if !lastScore.score.trim()
+    if lastScore and !lastScore.score.trim()
       lastScore.edit()
     else
       @newScore().edit()
