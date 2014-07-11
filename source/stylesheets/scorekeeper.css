@@ -80,11 +80,11 @@ button {
 }
 
 .score:hover {
-  background: #b3b3b3;
+  background: #c1c1c1;
 }
 
 .score.editing {
-  background: #848484;
+  background: #FFF;
 }
 
 .score input {
@@ -97,12 +97,8 @@ button {
   width: 100%;
 }
 
-.editing input {
-  color: #FFF;
-}
-
 .score button {
-  color: #e3e3e3;
+  color: #676767;
   display: none;
   position: absolute;
   top: 50%;
@@ -119,7 +115,7 @@ button {
 }
 
 .score button:hover {
-  color: #FFF;
+  color: #444;
 }
 
 .total {
