@@ -26,6 +26,7 @@ boardTemplate = '
 scoreTemplate = '
   <div class="score">
     <input type="text" tabindex="2" value="{{score}}">
+    <button>&times;</button>
   </div>
 '
 
@@ -34,7 +35,7 @@ $plus = $ '.plus'
 
 class Score
 
-  constructor: (props, @onUpdate, @onEntered)->
+  constructor: (props, @onUpdate, @onEntered, @onRemove)->
     @id = props.id
     @score = props.score or ''
     @$el = $ @template()
@@ -51,6 +52,7 @@ class Score
       .on 'click', @edit
       .on 'focus', 'input', @edit
       .on 'blur', 'input', @stopEditing
+      .on 'click', 'button', @remove
 
   edit: (e)=>
     e and e.stopPropagation()
@@ -62,6 +64,10 @@ class Score
   stopEditing: =>
     @editing = false
     @$el.removeClass 'editing'
+
+  remove: =>
+    @$el.off().remove()
+    @onRemove this
 
   updateTotal: (e)=>
     @score = $(e.target).val()
@@ -116,19 +122,16 @@ class Board
     @addScore id: newId(@scores)
 
   addScore: (props)->
-    score = new Score props, @updateScore.bind(this), @editNextScore.bind(this)
+    score = new Score props, @calculateTotal, @editNextScore, @removeScore
     @scores.push score
     @$scores.append score.$el
     score
 
-  updateScore: ->
-    @calculateTotal()
-
-  editNextScore: (score)->
+  editNextScore: (score)=>
     index = @scores.indexOf score
     nextScore = @scores[index + 1]
     if score.score.trim()
-      (nextScore or @newScore).edit()
+      (nextScore or @newScore()).edit()
 
   editLastScore: =>
     lastScore = @scores[@scores.length - 1]
@@ -136,6 +139,11 @@ class Board
       lastScore.edit()
     else
       @newScore().edit()
+
+  removeScore: (score)=>
+    index = @scores.indexOf score
+    @scores.splice(index, 1) if index > -1
+    @onUpdate()
 
   calculateTotal: =>
     total = 0
@@ -174,11 +182,11 @@ class ScoreKeeper
     @addBoard id: newId(@boards), name: '', scores: ''
 
   addBoard: (props)->
-    board = new Board props, @save.bind(this), @removeBoard.bind(this)
+    board = new Board props, @save.bind(this), @removeBoard
     @boards.push board
     $boards.append board.$el
 
-  removeBoard: (board)->
+  removeBoard: (board)=>
     index = @boards.indexOf board
     @boards.splice(index, 1) if index > -1
     @save()

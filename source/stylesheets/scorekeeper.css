@@ -75,6 +75,7 @@ button {
 
 .score {
   border-radius: 3px;
+  position: relative;
 }
 
 .score:hover {
@@ -96,6 +97,27 @@ button {
 }
 
 .editing input {
+  color: #FFF;
+}
+
+.score button {
+  color: #e3e3e3;
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -0.75em;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.4em;
+}
+
+.score:hover button,
+.editing button {
+  display: block;
+}
+
+.score button:hover {
   color: #FFF;
 }
 
