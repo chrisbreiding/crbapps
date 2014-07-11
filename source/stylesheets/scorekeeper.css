@@ -68,9 +68,10 @@ button {
   background: #d3d3d3;
   color: #28361B;
   cursor: cell;
+  overflow: scroll;
   padding: .5em;
   top: 2.6em;
-  bottom: 2.6em;
+  bottom: 3em;
 }
 
 .score {
@@ -83,7 +84,7 @@ button {
 }
 
 .score.editing {
-  background: #626262;
+  background: #848484;
 }
 
 .score input {
@@ -125,9 +126,13 @@ button {
   background: #333;
   bottom: 0;
   color: #FFF;
-  padding: .8em;
-  height: 2.6em;
-  line-height: 1em;
+  padding: 0 .8em;
+  height: 3em;
+  line-height: 3em;
+}
+
+.total span {
+  font-size: 1.5em;
 }
 
 .close {
@@ -150,7 +155,7 @@ button {
   outline: solid 2px #a2a2a2;
 }
 
-input:focus + .close {
+.name:focus + .close {
   display: none;
 }
 

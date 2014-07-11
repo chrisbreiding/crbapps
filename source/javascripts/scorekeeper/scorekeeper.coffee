@@ -19,7 +19,9 @@ boardTemplate = '
     <input class="name" type="text" placeholder="name..." tabindex="1" value="{{name}}" />
     <button class="close">&times;</button>
     <div class="scores"></div>
-    <div class="total">0</div>
+    <div class="total">
+      <span>0</span>
+    </div>
   </div>
 '
 
@@ -88,7 +90,7 @@ class Board
     @scores = []
 
     @$el = $ @template()
-    @$total = @$el.find '.total'
+    @$total = @$el.find '.total span'
     @$scores = @$el.find '.scores'
 
     if props.scores and props.scores.length
