@@ -50,7 +50,7 @@ class Score
 
   bindEvents: ->
     @$el
-      .on 'keyup', @updateTotal
+      .on 'keyup', @updateScore
       .on 'click', @edit
       .on 'focus', 'input', @edit
       .on 'blur', 'input', @stopEditing
@@ -71,7 +71,7 @@ class Score
     @$el.off().remove()
     @onRemove this
 
-  updateTotal: (e)=>
+  updateScore: (e)=>
     @score = $(e.target).val()
     @onUpdate()
     if e.keyCode is ENTER_KEY_CODE
@@ -145,17 +145,14 @@ class Board
   removeScore: (score)=>
     index = @scores.indexOf score
     @scores.splice(index, 1) if index > -1
+    @calculateTotal()
     @onUpdate()
 
   calculateTotal: =>
     total = 0
     total += +score.score for score in @scores when not isNaN(+score.score)
-
-    @updateTotal total
-
-  updateTotal: (score)->
     @onUpdate()
-    @$total.text score
+    @$total.text total
 
   toJSON: ->
     id: @id
