@@ -17,7 +17,9 @@ ENTER_KEY_CODE = 13
 boardTemplate = '
   <div class="board">
     <input class="name" type="text" placeholder="name..." tabindex="1" value="{{name}}" />
-    <button class="close">&times;</button>
+    <button class="close">
+      <span>&times;</span>
+    </button>
     <div class="scores"></div>
     <div class="total">
       <span>0</span>
