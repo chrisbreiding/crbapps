@@ -24,6 +24,12 @@ define ['react', 'jsx!./board-template', 'lodash'], (React, template, _)->
     remove: ->
       @props.onRemove id: @props.key
 
+    previousBoard: ->
+      @props.onPreviousBoard id: @props.key
+
+    nextBoard: ->
+      @props.onNextBoard id: @props.key
+
     save: (props)->
       @props.onUpdate
         id: @props.key

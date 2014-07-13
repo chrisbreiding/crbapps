@@ -3,10 +3,11 @@ define(['react'], function (React) {
     return (
       <div className="score" onClick={this.edit} ref="container">
         <input type="text"
-               tabIndex="2"
+               tabIndex="0"
                ref="score"
                defaultValue={this.props.score}
-               onKeyUp={this.updateScore}
+               onKeyDown={this.keyDown}
+               onKeyUp={this.keyUp}
                onFocus={this.edit}
                onBlur={this.stopEditing} />
         <button onClick={this.remove}>&times;</button>

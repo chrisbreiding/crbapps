@@ -4,6 +4,12 @@ define ['react', 'jsx!./score-list-template', 'lodash', './util'], (React, templ
 
     render: template
 
+    componentDidMount: ->
+      @componentDidUpdate()
+
+    componentDidUpdate: ->
+      @addOrEditLastScore() if @props.edit
+
     addOrEditLastScore: ->
       lastScore = @props.scores[@props.scores.length - 1]
       score = if lastScore and !lastScore.score.trim()
@@ -11,6 +17,11 @@ define ['react', 'jsx!./score-list-template', 'lodash', './util'], (React, templ
       else
         @newScore()
       @editScore score
+
+    previousScore: (score)->
+      index = _.findIndex @props.scores, (s)-> s.id is score.id
+      if index > 0
+        @editScore @props.scores[index - 1]
 
     nextOrNewScore: (score)->
       index = _.findIndex @props.scores, (s)-> s.id is score.id

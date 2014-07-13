@@ -26,5 +26,25 @@ define ['react', 'jsx!./board-list-template', 'lodash', './util'],
         @props.boards.splice args...
         @save()
 
+    previousBoard: (board)->
+      index = _.findIndex @props.boards, (b)-> b.id is board.id
+      if index > -1
+        previousIndex = index - 1
+        previousIndex = @props.boards.length - 1 if previousIndex < 0
+        @editBoard @props.boards[previousIndex]
+
+    nextBoard: (board)->
+      index = _.findIndex @props.boards, (b)-> b.id is board.id
+      if index > -1
+        nextIndex = index + 1
+        nextIndex = 0 if nextIndex > @props.boards.length - 1
+        @editBoard @props.boards[nextIndex]
+
+    editBoard: (board)->
+      board.edit = true
+      @updateBoard(board).then =>
+        board.edit = false
+        @updateBoard board
+
     save: ->
       @props.onUpdate @props.boards

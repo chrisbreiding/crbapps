@@ -5,8 +5,11 @@ define(['react', './board'], function (React, Board) {
         <Board key={board.id}
                name={board.name}
                scores={board.scores}
+               edit={board.edit}
                onUpdate={this.updateBoard}
-               onRemove={this.removeBoard} />
+               onRemove={this.removeBoard}
+               onPreviousBoard={this.previousBoard}
+               onNextBoard={this.nextBoard} />
       );
     }.bind(this));
 

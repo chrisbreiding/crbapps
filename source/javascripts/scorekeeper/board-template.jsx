@@ -11,7 +11,11 @@ define(['react', './score-list'], function (React, ScoreList) {
         <button className="close" onClick={this.remove}>
           <span>&times;</span>
         </button>
-        <ScoreList scores={this.props.scores} onUpdate={this.updateScores} />
+        <ScoreList scores={this.props.scores}
+                   edit={this.props.edit}
+                   onUpdate={this.updateScores}
+                   onPreviousBoard={this.previousBoard}
+                   onNextBoard={this.nextBoard} />
         <div className="total">
           <span>{this.state.total}</span>
         </div>
