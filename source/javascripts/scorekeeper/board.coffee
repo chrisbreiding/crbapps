@@ -4,25 +4,20 @@ define ['react', 'jsx!./board-template', 'lodash'], (React, template, _)->
 
     render: template
 
-    getInitialState: ->
-      total: @total @props.scores
-
     componentDidMount: ->
       if !@props.name.trim()
         @refs.name.getDOMNode().focus()
-
-    total: (scores)->
-      total = 0
-      total += +score.score for score in scores when not isNaN(+score.score)
-      total
 
     updateName: (e)->
       @props.name = e.target.value
       @save()
 
     updateScores: (scores)->
-      @setState total: @total scores
       @props.scores = scores
+      @save()
+
+    clearScores: ->
+      @props.scores = []
       @save()
 
     remove: ->
@@ -34,7 +29,7 @@ define ['react', 'jsx!./board-template', 'lodash'], (React, template, _)->
     nextBoard: ->
       @props.onNextBoard id: @props.key
 
-    save: (props)->
+    save: ->
       @props.onUpdate
         id: @props.key
         name: @props.name

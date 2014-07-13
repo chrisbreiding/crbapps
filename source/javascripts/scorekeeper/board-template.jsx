@@ -1,5 +1,10 @@
 define(['react', './score-list'], function (React, ScoreList) {
   return function () {
+    var total = this.props.scores.reduce(function (total, score) {
+      if (!isNaN(+score.score)) total += +score.score;
+      return total;
+    }, 0);
+
     return (
       <div className="board">
         <input className="name"
@@ -18,7 +23,10 @@ define(['react', './score-list'], function (React, ScoreList) {
                    onPreviousBoard={this.previousBoard}
                    onNextBoard={this.nextBoard} />
         <div className="total">
-          <span>{this.state.total}</span>
+          <span>{total}</span>
+          <button onClick={this.clearScores}>
+            <span>&#8861;</span>
+          </button>
         </div>
       </div>
     );

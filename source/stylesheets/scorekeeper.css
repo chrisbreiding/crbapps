@@ -63,7 +63,8 @@ button {
 .score button,
 .close,
 .close:before,
-.plus {
+.plus,
+.total button {
   transition: all .5s ease;
 }
 
@@ -147,8 +148,28 @@ button {
   line-height: 3em;
 }
 
-.total span {
+.total > span {
   font-size: 1.5em;
+}
+
+.total button {
+  color: #a3a3a3;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: .5em;
+  height: 3em;
+  line-height: 3em;
+}
+
+.total button:hover {
+  color: #FFF;
+}
+
+.total button span {
+  display: block;
+  font-size: 1.8em;
+  height: 100%;
 }
 
 .close {
