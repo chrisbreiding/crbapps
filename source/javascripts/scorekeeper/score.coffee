@@ -4,15 +4,11 @@ define ['react', 'jsx!./score-template', 'jquery'], (React, template, $)->
 
     render: template
 
-    getInitialState: ->
-      score: @props.score
+    componentDidMount: ->
+      @componentDidUpdate()
 
     componentDidUpdate: ->
-      if @props.edit
-        @edit()
-        @props.didEdit
-          id: @props.key
-          score: @state.score
+      @edit() if @props.edit
 
     edit: (e)->
       e and e.stopPropagation()
@@ -23,14 +19,13 @@ define ['react', 'jsx!./score-template', 'jquery'], (React, template, $)->
       $(@refs.container.getDOMNode()).removeClass('editing')
 
     updateScore: (e)->
-      @setState score: e.target.value, =>
-        @props.onUpdate
-          id: @props.key
-          score: @state.score
+      @props.onUpdate
+        id: @props.key
+        score: e.target.value
       if e.keyCode is 13
         @props.onNext
           id: @props.key
-          score: @state.score
+          score: e.target.value
 
     remove: ->
       @props.onRemove id: @props.key

@@ -1,40 +1,35 @@
-define ['react', 'jsx!./score-list-template', './util'], (React, template, util)->
+define ['react', 'jsx!./score-list-template', 'lodash', './util'], (React, template, _, util)->
 
   React.createClass
 
     render: template
 
-    getInitialState: ->
-      scores: this.props.scores
-
     addOrEditLastScore: ->
-      lastScore = @state.scores[@state.scores.length - 1]
-      if lastScore and !lastScore.score.trim()
-        lastScore.edit = true
-        @updateScore lastScore
+      lastScore = @props.scores[@props.scores.length - 1]
+      score = if lastScore and !lastScore.score.trim()
+        lastScore
       else
-        @editNewScore()
-
-      @setState scores: @state.scores, => @save()
+        @newScore()
+      @editScore score
 
     nextOrNewScore: (score)->
-      index = util.findIndex @state.scores, (s)-> s.id is score.id
-      nextScore = @state.scores[index + 1]
+      index = _.findIndex @props.scores, (s)-> s.id is score.id
+      nextScore = @props.scores[index + 1]
       if score.score.trim()
-        if nextScore
-          nextScore.edit = true
-          @updateScore nextScore
-        else
-          @editNewScore()
+        @editScore(nextScore or @addScore())
 
-    editNewScore: ->
-      @state.scores.push
-        id: util.newId @state.scores
+    newScore: ->
+      score =
+        id: util.newId @props.scores
         score: ''
-        edit: true
+      @props.scores.push score
+      score
 
-    didEdit: (score)->
-      @updateScore score
+    editScore: (score)->
+      score.edit = true
+      @updateScore(score).then =>
+        score.edit = false
+        @updateScore score
 
     updateScore: (score)->
       @replaceScore score, score
@@ -43,12 +38,12 @@ define ['react', 'jsx!./score-list-template', './util'], (React, template, util)
       @replaceScore score
 
     replaceScore: (score, replacement)->
-      index = util.findIndex @state.scores, (s)-> s.id is score.id
+      index = _.findIndex @props.scores, (s)-> s.id is score.id
       if index > -1
         args = [index, 1]
         args.push replacement if replacement
-        @state.scores.splice args...
-        @setState scores: @state.scores, => @save()
+        @props.scores.splice args...
+        @save()
 
     save: ->
-      @props.onUpdate @state.scores
+      @props.onUpdate @props.scores

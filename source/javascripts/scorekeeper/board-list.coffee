@@ -1,18 +1,16 @@
-define ['react', 'jsx!./board-list-template', './util'], (React, template, util)->
+define ['react', 'jsx!./board-list-template', 'lodash', './util'],
+(React, template, _, util)->
 
   React.createClass
 
     render: template
 
-    getInitialState: ->
-      boards: @props.boards
-
     newBoard: ->
-      @state.boards.push
-        id: util.newId @state.boards
+      @props.boards.push
+        id: util.newId @props.boards
         name: ''
         scores: []
-      @setState boards: @state.boards, => @save()
+      @save()
 
     updateBoard: (board)->
       @replaceBoard board, board
@@ -21,12 +19,12 @@ define ['react', 'jsx!./board-list-template', './util'], (React, template, util)
       @replaceBoard board
 
     replaceBoard: (board, replacement)->
-      index = util.findIndex @state.boards, (b)-> b.id is board.id
+      index = _.findIndex @props.boards, (b)-> b.id is board.id
       if index > -1
         args = [index, 1]
         args.push replacement if replacement
-        @state.boards.splice args...
-        @setState boards: @state.boards, => @save()
+        @props.boards.splice args...
+        @save()
 
     save: ->
-      @props.onUpdate @state.boards
+      @props.onUpdate @props.boards

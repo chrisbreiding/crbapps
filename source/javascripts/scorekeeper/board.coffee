@@ -1,12 +1,10 @@
-define ['react', 'jsx!./board-template'], (React, template)->
+define ['react', 'jsx!./board-template', 'lodash'], (React, template, _)->
 
   React.createClass
 
     render: template
 
     getInitialState: ->
-      name: @props.name
-      scores: @props.scores
       total: @total @props.scores
 
     total: (scores)->
@@ -15,19 +13,19 @@ define ['react', 'jsx!./board-template'], (React, template)->
       total
 
     updateName: (e)->
-      @setState name: e.target.value, => @save()
+      @props.name = e.target.value
+      @save()
 
     updateScores: (scores)->
-      state =
-        scores: scores
-        total: @total scores
-      @setState state, => @save()
+      @setState total: @total scores
+      @props.scores = scores
+      @save()
 
     remove: ->
       @props.onRemove id: @props.key
 
-    save: ->
+    save: (props)->
       @props.onUpdate
         id: @props.key
-        name: @state.name
-        scores: @state.scores
+        name: @props.name
+        scores: @props.scores

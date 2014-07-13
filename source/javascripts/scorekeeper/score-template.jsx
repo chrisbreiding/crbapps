@@ -5,7 +5,7 @@ define(['react'], function (React) {
         <input type="text"
                tabIndex="2"
                ref="score"
-               defaultValue={this.state.score}
+               defaultValue={this.props.score}
                onKeyUp={this.updateScore}
                onFocus={this.edit}
                onBlur={this.stopEditing} />

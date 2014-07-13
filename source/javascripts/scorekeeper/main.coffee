@@ -1,6 +1,8 @@
 require.config
   paths:
     jquery: '../vendor/jquery'
+    lodash: '../vendor/lodash'
+    rsvp: '../vendor/rsvp'
     react: '../vendor/react'
     JSXTransformer: '../vendor/JSXTransformer'
     text: '../vendor/require-text'

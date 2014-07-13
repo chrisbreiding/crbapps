@@ -1,6 +1,6 @@
 define(['react', './board'], function (React, Board) {
   return function () {
-    var boards = this.state.boards.map(function (board) {
+    var boards = this.props.boards.map(function (board) {
       return (
         <Board key={board.id}
                name={board.name}
