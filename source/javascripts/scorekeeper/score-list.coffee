@@ -16,7 +16,7 @@ define ['react', 'jsx!./score-list-template', 'lodash', './util'], (React, templ
       index = _.findIndex @props.scores, (s)-> s.id is score.id
       nextScore = @props.scores[index + 1]
       if score.score.trim()
-        @editScore(nextScore or @addScore())
+        @editScore(nextScore or @newScore())
 
     newScore: ->
       score =
