@@ -7,6 +7,10 @@ define ['react', 'jsx!./board-template', 'lodash'], (React, template, _)->
     getInitialState: ->
       total: @total @props.scores
 
+    componentDidMount: ->
+      if !@props.name.trim()
+        @refs.name.getDOMNode().focus()
+
     total: (scores)->
       total = 0
       total += +score.score for score in scores when not isNaN(+score.score)

@@ -3,7 +3,7 @@ define(['react'], function (React) {
     return (
       <div className="score" onClick={this.edit} ref="container">
         <input type="text"
-               tabIndex="0"
+               tabIndex="-1"
                ref="score"
                defaultValue={this.props.score}
                onKeyDown={this.keyDown}

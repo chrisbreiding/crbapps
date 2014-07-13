@@ -181,18 +181,14 @@ button {
 }
 
 .close:hover:before {
-  border-top-color: #506B38;
-  border-right-color: #506B38;
+  border-top-color: rgba(0, 0, 0, 0.8);
+  border-right-color: rgba(0, 0, 0, 0.8);
 }
 
 .close span {
   position: relative;
   top: 1px;
   right: 1px;
-}
-
-.name:focus + .close {
-  display: none;
 }
 
 .plus {

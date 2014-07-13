@@ -4,6 +4,7 @@ define(['react', './score-list'], function (React, ScoreList) {
       <div className="board">
         <input className="name"
                type="text"
+               ref="name"
                placeholder="name..."
                tabIndex="1"
                defaultValue={this.props.name}
