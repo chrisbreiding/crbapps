@@ -22,11 +22,5 @@ define ['lodash'], (_)->
       @props[@listName].splice args...
       @save()
 
-  edit: (item)->
-    item.edit = true
-    @update(item).then =>
-      item.edit = false
-      @update item
-
   save: ->
     @props.onUpdate @props[@listName]

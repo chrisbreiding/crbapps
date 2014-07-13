@@ -28,3 +28,6 @@ define ['react', 'jsx!./board-list-template', './list-mixin'],
     moveToBoard: (board, moveToIndex)->
       index = @indexOf board
       @edit @props.boards[moveToIndex index] if index > -1
+
+    edit: (board)->
+      @refs["board#{board.id}"].edit()

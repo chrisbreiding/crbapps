@@ -4,7 +4,7 @@ define(['react', './score'], function (React, Score) {
       return (
         <Score key={score.id}
                score={score.score}
-               edit={score.edit}
+               ref={'score' + score.id}
                onPrevious={this.previousScore}
                onNext={this.nextOrNewScore}
                onPreviousBoard={this.props.onPreviousBoard}
@@ -14,7 +14,7 @@ define(['react', './score'], function (React, Score) {
       );
     }.bind(this));
     return (
-      <div className="scores" onClick={this.addOrEditLastScore}>
+      <div className="scores" onClick={this.edit}>
         {scores}
       </div>
     );

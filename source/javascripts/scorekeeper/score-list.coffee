@@ -10,31 +10,34 @@ define ['react', 'jsx!./score-list-template', './list-mixin'],
     componentWillMount: ->
       @listName = 'scores'
 
-    componentDidMount: ->
-      @componentDidUpdate()
-
-    componentDidUpdate: ->
-      @addOrEditLastScore() if @props.edit
-
-    addOrEditLastScore: ->
+    edit: ->
       lastScore = @props.scores[@props.scores.length - 1]
-      score = if lastScore and !lastScore.score.trim()
-        lastScore
+      if lastScore and !lastScore.score.trim()
+        @editScore lastScore
       else
-        @newScore()
-      @edit score
+        @editNewScore()
+
+    editScore: (score)->
+      @refs["score#{score.id}"].edit()
 
     previousScore: (score)->
       index = @indexOf score
-      @edit @props.scores[index - 1] if index > 0
+      @editScore @props.scores[index - 1] if index > 0
 
     nextOrNewScore: (score)->
       nextScore = @props.scores[@indexOf(score) + 1]
-      @edit(nextScore or @newScore()) if score.score.trim()
+      if score.score.trim()
+        if nextScore
+          @editScore nextScore
+        else
+          @editNewScore()
 
-    newScore: ->
+    editNewScore: ->
+      @addScore().then (score)=> @editScore score
+
+    addScore: ->
       score =
         id: @newId()
         score: ''
       @props.scores.push score
-      score
+      @save().then -> score

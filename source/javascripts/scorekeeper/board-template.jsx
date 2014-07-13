@@ -18,7 +18,7 @@ define(['react', './score-list'], function (React, ScoreList) {
           <span>&times;</span>
         </button>
         <ScoreList scores={this.props.scores}
-                   edit={this.props.edit}
+                   ref="scoreList"
                    onUpdate={this.updateScores}
                    onPreviousBoard={this.previousBoard}
                    onNextBoard={this.nextBoard} />

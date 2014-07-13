@@ -29,6 +29,9 @@ define ['react', 'jsx!./board-template', 'lodash'], (React, template, _)->
     nextBoard: ->
       @props.onNextBoard id: @props.key
 
+    edit: ->
+      @refs.scoreList.edit()
+
     save: ->
       @props.onUpdate
         id: @props.key

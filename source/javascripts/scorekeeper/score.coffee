@@ -9,12 +9,6 @@ define ['react', 'jsx!./score-template', 'jquery'], (React, template, $)->
 
     render: template
 
-    componentDidMount: ->
-      @componentDidUpdate()
-
-    componentDidUpdate: ->
-      @edit() if @props.edit
-
     edit: (e)->
       e and e.stopPropagation()
       $(@refs.container.getDOMNode()).addClass('editing')

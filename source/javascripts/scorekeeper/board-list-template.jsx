@@ -5,7 +5,7 @@ define(['react', './board'], function (React, Board) {
         <Board key={board.id}
                name={board.name}
                scores={board.scores}
-               edit={board.edit}
+               ref={'board' + board.id}
                onUpdate={this.update}
                onRemove={this.remove}
                onPreviousBoard={this.previousBoard}
