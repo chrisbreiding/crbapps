@@ -1,50 +1,30 @@
-define ['react', 'jsx!./board-list-template', 'lodash', './util'],
-(React, template, _, util)->
+define ['react', 'jsx!./board-list-template', './list-mixin'],
+(React, template, List)->
 
   React.createClass
 
+    mixins: [List]
+
     render: template
+
+    componentWillMount: ->
+      @listName = 'boards'
 
     newBoard: ->
       @props.boards.push
-        id: util.newId @props.boards
+        id: @newId()
         name: ''
         scores: []
       @save()
 
-    updateBoard: (board)->
-      @replaceBoard board, board
-
-    removeBoard: (board)->
-      @replaceBoard board
-
-    replaceBoard: (board, replacement)->
-      index = _.findIndex @props.boards, (b)-> b.id is board.id
-      if index > -1
-        args = [index, 1]
-        args.push replacement if replacement
-        @props.boards.splice args...
-        @save()
-
     previousBoard: (board)->
-      index = _.findIndex @props.boards, (b)-> b.id is board.id
-      if index > -1
-        previousIndex = index - 1
-        previousIndex = @props.boards.length - 1 if previousIndex < 0
-        @editBoard @props.boards[previousIndex]
+      @moveToBoard board, (index)=>
+        if index - 1 < 0 then @props.boards.length - 1 else index - 1
 
     nextBoard: (board)->
-      index = _.findIndex @props.boards, (b)-> b.id is board.id
-      if index > -1
-        nextIndex = index + 1
-        nextIndex = 0 if nextIndex > @props.boards.length - 1
-        @editBoard @props.boards[nextIndex]
+      @moveToBoard board, (index)=>
+        if index + 1 > @props.boards.length - 1 then 0 else index + 1
 
-    editBoard: (board)->
-      board.edit = true
-      @updateBoard(board).then =>
-        board.edit = false
-        @updateBoard board
-
-    save: ->
-      @props.onUpdate @props.boards
+    moveToBoard: (board, moveToIndex)->
+      index = @indexOf board
+      @edit @props.boards[moveToIndex index] if index > -1

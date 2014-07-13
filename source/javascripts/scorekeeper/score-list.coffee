@@ -1,8 +1,14 @@
-define ['react', 'jsx!./score-list-template', 'lodash', './util'], (React, template, _, util)->
+define ['react', 'jsx!./score-list-template', './list-mixin'],
+(React, template, List)->
 
   React.createClass
 
+    mixins: [List]
+
     render: template
+
+    componentWillMount: ->
+      @listName = 'scores'
 
     componentDidMount: ->
       @componentDidUpdate()
@@ -16,45 +22,19 @@ define ['react', 'jsx!./score-list-template', 'lodash', './util'], (React, templ
         lastScore
       else
         @newScore()
-      @editScore score
+      @edit score
 
     previousScore: (score)->
-      index = _.findIndex @props.scores, (s)-> s.id is score.id
-      if index > 0
-        @editScore @props.scores[index - 1]
+      index = @indexOf score
+      @edit @props.scores[index - 1] if index > 0
 
     nextOrNewScore: (score)->
-      index = _.findIndex @props.scores, (s)-> s.id is score.id
-      nextScore = @props.scores[index + 1]
-      if score.score.trim()
-        @editScore(nextScore or @newScore())
+      nextScore = @props.scores[@indexOf(score) + 1]
+      @edit(nextScore or @newScore()) if score.score.trim()
 
     newScore: ->
       score =
-        id: util.newId @props.scores
+        id: @newId()
         score: ''
       @props.scores.push score
       score
-
-    editScore: (score)->
-      score.edit = true
-      @updateScore(score).then =>
-        score.edit = false
-        @updateScore score
-
-    updateScore: (score)->
-      @replaceScore score, score
-
-    removeScore: (score)->
-      @replaceScore score
-
-    replaceScore: (score, replacement)->
-      index = _.findIndex @props.scores, (s)-> s.id is score.id
-      if index > -1
-        args = [index, 1]
-        args.push replacement if replacement
-        @props.scores.splice args...
-        @save()
-
-    save: ->
-      @props.onUpdate @props.scores
