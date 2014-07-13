@@ -3,8 +3,6 @@ title: Scorekeeper
 css: scorekeeper
 ---
 
-<div class="boards"></div>
-<button class="plus">+</button>
+<div id="container"></div>
 
-<%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js' %>
-<%= javascript_include_tag 'scorekeeper/scorekeeper' %>
+<script data-main="/javascripts/scorekeeper/main" src="/javascripts/vendor/require.js"></script>

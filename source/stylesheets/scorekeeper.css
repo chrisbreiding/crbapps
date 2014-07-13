@@ -7,7 +7,6 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 body {
   background: #848484;
   font-size: 20px;
-  padding-top: 32px;
 }
 
 button {
@@ -18,10 +17,18 @@ button {
   outline: none;
 }
 
+.board-list {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .boards {
   display: flex;
   position: absolute;
-  top: 32px;
+  top: 0;
   right: 60px;
   bottom: 0;
   left: 0;
@@ -193,7 +200,7 @@ button {
   color: #d3d3d3;
   font-size: 2em;
   position: absolute;
-  top: 44px;
+  top: 12px;
   right: 12px;
   bottom: 12px;
   width: 48px;
