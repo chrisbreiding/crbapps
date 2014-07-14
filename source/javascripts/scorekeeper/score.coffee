@@ -3,7 +3,7 @@ ENTER_KEY = 13
 UP_KEY = 38
 DOWN_KEY = 40
 
-define ['react', 'jsx!./score-template', 'jquery'], (React, template, $)->
+define ['react', 'jsx!./score-template'], (React, template)->
 
   React.createClass
 
@@ -11,11 +11,11 @@ define ['react', 'jsx!./score-template', 'jquery'], (React, template, $)->
 
     edit: (e)->
       e and e.stopPropagation()
-      $(@refs.container.getDOMNode()).addClass('editing')
-      $(@refs.score.getDOMNode()).focus()
+      @refs.container.getDOMNode().className = 'score editing'
+      @refs.score.getDOMNode().focus()
 
     stopEditing: ->
-      $(@refs.container.getDOMNode()).removeClass('editing')
+      @refs.container.getDOMNode().className = 'score'
 
     keyDown: (e)->
       return unless e.keyCode is TAB_KEY
