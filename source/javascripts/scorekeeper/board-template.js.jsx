@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 define(['react', './score-list'], function (React, ScoreList) {
   return function () {
     var total = this.props.scores.reduce(function (total, score) {

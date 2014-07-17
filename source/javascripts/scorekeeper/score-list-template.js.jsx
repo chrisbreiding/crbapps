@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 define(['react', './score'], function (React, Score) {
   return function () {
     var scores = this.props.scores.map(function (score) {

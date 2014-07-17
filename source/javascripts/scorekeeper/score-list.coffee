@@ -1,4 +1,4 @@
-define ['react', 'jsx!./score-list-template', './list-mixin'],
+define ['react', './score-list-template', './list-mixin'],
 (React, template, List)->
 
   React.createClass

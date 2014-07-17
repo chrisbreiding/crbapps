@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 define(['react', './board'], function (React, Board) {
   return function () {
     var boards = this.props.boards.map(function (board) {

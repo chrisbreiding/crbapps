@@ -11,23 +11,12 @@ set :images_dir, 'images'
   ignore "/#{page}.html"
 end
 
-# Build-specific configuration
+activate :react
+
 configure :build do
-  # For example, change the Compass output style for deployment
   activate :minify_css
-
-  # Minify Javascript on build
-  # activate :minify_javascript
-
-  # Enable cache buster
-  # activate :asset_hash
-
-  # Use relative URLs
+  activate :minify_javascript
   activate :relative_assets
-
-  # Compress PNGs after build
-  # require "middleman-smusher"
-  # activate :smusher
 end
 
 activate :deploy do |deploy|

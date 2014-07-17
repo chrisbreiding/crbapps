@@ -1,6 +1,6 @@
 LS_KEY = 'scorekeeper'
 
-define ['react', 'jsx!./app-template', 'lodash', 'rsvp'],
+define ['react', './app-template', 'lodash', 'rsvp'],
 (React, template, _, RSVP)->
 
   React.createClass

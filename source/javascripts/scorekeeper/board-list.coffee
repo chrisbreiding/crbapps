@@ -1,4 +1,4 @@
-define ['react', 'jsx!./board-list-template', './list-mixin'],
+define ['react', './board-list-template', './list-mixin'],
 (React, template, List)->
 
   React.createClass

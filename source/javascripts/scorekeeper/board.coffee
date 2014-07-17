@@ -1,4 +1,4 @@
-define ['react', 'jsx!./board-template', 'lodash'], (React, template, _)->
+define ['react', './board-template', 'lodash'], (React, template, _)->
 
   React.createClass
 

@@ -3,7 +3,7 @@ ENTER_KEY = 13
 UP_KEY = 38
 DOWN_KEY = 40
 
-define ['react', 'jsx!./score-template'], (React, template)->
+define ['react', './score-template'], (React, template)->
 
   React.createClass
 
