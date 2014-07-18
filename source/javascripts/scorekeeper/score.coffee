@@ -1,8 +1,3 @@
-TAB_KEY = 9
-ENTER_KEY = 13
-UP_KEY = 38
-DOWN_KEY = 40
-
 define ['react', './score-template'], (React, template)->
 
   React.createClass
@@ -18,7 +13,7 @@ define ['react', './score-template'], (React, template)->
       @refs.container.getDOMNode().className = 'score'
 
     keyDown: (e)->
-      return unless e.keyCode is TAB_KEY
+      return unless e.key is 'Tab'
 
       e.preventDefault()
       if e.shiftKey
@@ -32,10 +27,10 @@ define ['react', './score-template'], (React, template)->
         id: @props.key
         score: score
 
-      switch e.keyCode
-        when UP_KEY
+      switch e.key
+        when 'ArrowUp'
           @previousScore score
-        when ENTER_KEY, DOWN_KEY
+        when 'Enter', 'ArrowDown'
           @nextScore score
 
     previousScore: (score)->
