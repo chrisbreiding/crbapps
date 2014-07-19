@@ -1,11 +1,25 @@
-define ['react', './score-list-template', './list-mixin'],
-(React, template, List)->
+define ['react', './list-mixin', './score'], (React, List, Score)->
 
   React.createClass
 
     mixins: [List]
 
-    render: template
+    render: ->
+      React.DOM.div
+        className: 'scores'
+        onClick: @edit
+      ,
+        @props.scores.map (score)=>
+          Score
+            key: score.id
+            score: score.score
+            ref: "score#{score.id}"
+            onPrevious: @previousScore
+            onNext: @nextOrNewScore
+            onPreviousBoard: @props.onPreviousBoard
+            onNextBoard: @props.onNextBoard
+            onUpdate: @update
+            onRemove: @remove
 
     componentWillMount: ->
       @listName = 'scores'

@@ -1,7 +1,9 @@
-define ['lodash'], (_)->
+define ->
 
   indexOf: (item)->
-    _.findIndex @props[@listName], (i)-> i.id is item.id
+    for thisOne, index in @props[@listName]
+      return index if thisOne.id is item.id
+    -1
 
   newId: ->
     ids = (item.id for item in @props[@listName])

@@ -1,8 +1,26 @@
-define ['react', './score-template'], (React, template)->
+define ['react'], (React)->
 
   React.createClass
 
-    render: template
+    render: ->
+      React.DOM.div
+        ref: 'container'
+        className: 'score'
+        onClick: @edit
+      ,
+        React.DOM.input
+          ref: 'score'
+          tabIndex: '-1'
+          defaultValue: @props.score
+          onKeyDown: @keyDown
+          onKeyUp: @keyUp
+          onFocus: @edit
+          onBlur: @stopEditing
+      ,
+        React.DOM.button
+          onClick: @remove
+        ,
+          '×'
 
     edit: (e)->
       e and e.stopPropagation()

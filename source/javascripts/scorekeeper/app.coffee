@@ -1,11 +1,21 @@
 LS_KEY = 'scorekeeper'
 
-define ['react', './app-template', 'lodash', 'rsvp'],
-(React, template, _, RSVP)->
+debounce = (timeout, fn)->
+  (args...)->
+    context = this
+    clearTimeout debounce.timeout
+    debounce.timeout = setTimeout ->
+      fn.call context, args...
+    , timeout
+
+define ['react', 'rsvp', './board-list'], (React, RSVP, BoardList)->
 
   React.createClass
 
-    render: template
+    render: ->
+      BoardList
+        boards: @state.boards
+        onUpdate: @update
 
     getInitialState: ->
       data = JSON.parse(localStorage[LS_KEY] or '{}')
@@ -16,6 +26,5 @@ define ['react', './app-template', 'lodash', 'rsvp'],
       new RSVP.Promise (resolve)=>
         @setState boards: boards, resolve
 
-    save: _.throttle (boards)->
+    save: debounce 300, (boards)->
       localStorage[LS_KEY] = JSON.stringify boards: boards
-    , 300

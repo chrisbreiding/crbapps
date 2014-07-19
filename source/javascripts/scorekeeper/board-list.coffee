@@ -1,11 +1,32 @@
-define ['react', './board-list-template', './list-mixin'],
-(React, template, List)->
+define ['react', './list-mixin', './board'], (React, List, Board)->
 
   React.createClass
 
     mixins: [List]
 
-    render: template
+    render: ->
+      React.DOM.div
+        className: 'board-list'
+      ,
+        React.DOM.div
+          className: 'boards'
+        ,
+          @props.boards.map (board)=>
+            Board
+              key: board.id
+              name: board.name
+              scores: board.scores
+              ref: "board#{board.id}"
+              onUpdate: @update
+              onRemove: @remove
+              onPreviousBoard: @previousBoard
+              onNextBoard: @nextBoard
+      ,
+        React.DOM.button
+          className: 'plus'
+          onClick: @newBoard
+        ,
+          '+'
 
     componentWillMount: ->
       @listName = 'boards'

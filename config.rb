@@ -11,8 +11,6 @@ set :images_dir, 'images'
   ignore "/#{page}.html"
 end
 
-activate :react
-
 configure :build do
   activate :minify_css
   activate :minify_javascript

@@ -1,8 +1,46 @@
-define ['react', './board-template', 'lodash'], (React, template, _)->
+define ['react', './score-list'], (React, ScoreList)->
 
   React.createClass
 
-    render: template
+    render: ->
+      total = this.props.scores.reduce (total, score)->
+        total += +score.score unless isNaN +score.score
+        total
+      , 0
+
+      React.DOM.div
+        className: 'board'
+      ,
+        React.DOM.input
+          ref: 'name'
+          className: 'name'
+          placeholder: 'name...'
+          tabIndex: '1'
+          defaultValue: @props.name
+          onKeyUp: @updateName
+      ,
+        React.DOM.button
+          className: 'close'
+          onClick: @remove
+        ,
+          React.DOM.span null, '×'
+      ,
+        ScoreList
+          ref: 'scoreList'
+          scores: @props.scores
+          onUpdate: @updateScores
+          onPreviousBoard: @previousBoard
+          onNextBoard: @nextBoard
+      ,
+        React.DOM.div
+          className: 'total'
+        ,
+          React.DOM.span null, total
+        ,
+          React.DOM.button
+            onClick: @clearScores
+          ,
+            React.DOM.span null, '⊝'
 
     componentDidMount: ->
       if !@props.name.trim()
