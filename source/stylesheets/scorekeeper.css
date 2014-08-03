@@ -26,6 +26,7 @@ button {
 }
 
 .boards {
+  display: -webkit-flex;
   display: flex;
   position: absolute;
   top: 0;
@@ -38,6 +39,7 @@ button {
   margin: 12px;
   margin-left: 0;
   position: relative;
+  -webkit-flex-grow: 1;
   flex-grow: 1;
 }
 
