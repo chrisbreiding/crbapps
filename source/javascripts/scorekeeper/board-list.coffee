@@ -1,10 +1,13 @@
-define ['react', './list-mixin', './board'], (React, List, Board)->
+define ['react', 'lodash', './util', './list-mixin', './board'], (React, _, util, List, Board)->
 
   React.createClass
 
     mixins: [List]
 
     render: ->
+      rankings = @_rankings()
+      shouldRank = !(rankings.length is 1 and !rankings[0])
+
       React.DOM.div
         className: 'board-list'
       ,
@@ -15,6 +18,7 @@ define ['react', './list-mixin', './board'], (React, List, Board)->
             Board
               key: board.id
               name: board.name
+              rank: if shouldRank then @_rankForBoard(rankings, board) else null
               scores: board.scores
               ref: "board#{board.id}"
               onUpdate: @update
@@ -30,6 +34,17 @@ define ['react', './list-mixin', './board'], (React, List, Board)->
 
     componentWillMount: ->
       @listName = 'boards'
+
+    _rankings: ->
+      _(@props.boards)
+        .map (board)-> util.scoresTotal board.scores
+        .unique()
+        .sortBy (a, b)-> b - a
+        .value()
+
+    _rankForBoard: (rankings, board) ->
+      1 + _.findIndex rankings, (ranking)->
+        ranking is util.scoresTotal(board.scores)
 
     newBoard: ->
       @props.boards.push

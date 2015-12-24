@@ -1,5 +1,6 @@
 require.config
   paths:
+    lodash: '../vendor/lodash'
     rsvp: '../vendor/rsvp'
     react: '../vendor/react'
 

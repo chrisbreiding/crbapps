@@ -1,15 +1,14 @@
-define ['react', './score-list'], (React, ScoreList)->
+define ['react', './util', './score-list'], (React, util, ScoreList)->
 
   React.createClass
 
     render: ->
-      total = this.props.scores.reduce (total, score)->
-        total += +score.score unless isNaN +score.score
-        total
-      , 0
+      total = util.scoresTotal @props.scores
+
+      noRankClass = if @props.rank? then '' else ' no-rank'
 
       React.DOM.div
-        className: 'board'
+        className: "board#{noRankClass}"
       ,
         React.DOM.input
           ref: 'name'
@@ -18,6 +17,11 @@ define ['react', './score-list'], (React, ScoreList)->
           tabIndex: '1'
           defaultValue: @props.name
           onKeyUp: @updateName
+      ,
+        React.DOM.div
+          className: 'rank'
+        ,
+          React.DOM.span null, @props.rank
       ,
         React.DOM.button
           className: 'close'
