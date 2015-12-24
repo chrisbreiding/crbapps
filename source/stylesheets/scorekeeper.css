@@ -118,6 +118,12 @@ button {
   width: 100%;
 }
 
+.score input::-webkit-outer-spin-button,
+.score input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .score button {
   color: #878787;
   display: none;

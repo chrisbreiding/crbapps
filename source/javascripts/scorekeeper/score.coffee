@@ -10,6 +10,7 @@ define ['react'], (React)->
       ,
         React.DOM.input
           ref: 'score'
+          type: 'number'
           tabIndex: '-1'
           defaultValue: @props.score
           onKeyDown: @keyDown
