@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Aquarium</title>
+  <link href="../stylesheets/shared.css" rel="stylesheet" type="text/css" />
+    <link href="../stylesheets/aquarium.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <div class="nav">
+  <ul class="clearfix">
+    <li><a href="/"><strong>CRB Apps</strong></a></li>
+    <li><a href="/aquarium">Aquarium</a></li>
+    <li><a href="/calculator">Calculator</a></li>
+    <li><a href="/randomize">List Randomizer</a></li>
+    <li><a href="/randpass">Random Password</a></li>
+    <li><a href="/scorekeeper">Scorekeeper</a></li>
+  </ul>
+</div>
+
+
+  <div id="aquarium">
+    <button id="new-fish">New Fish</button>
+</div>
+
+<script type="text/template" id="fish">
+
+    <div class="head">
+        <div class="head-top"></div>
+        <div class="mouth"></div>
+    </div>
+
+    <div class="tail"></div>
+
+    <ul class="options">
+        <li title="Delete" class="delete">Delete</li>
+        <li title="Change Color" class="change-color">Change Color</li>
+    </ul>
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+<script src="../javascripts/vendor/underscore.js" type="text/javascript"></script>
+<script src="../javascripts/vendor/backbone.js" type="text/javascript"></script>
+<script src="../javascripts/aquarium/aquarium.js" type="text/javascript"></script>
+
+
+  <script src="../javascripts/shared/google-analytics.js" type="text/javascript"></script>
+
+</body>
+</html>

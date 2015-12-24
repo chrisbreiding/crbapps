@@ -1,0 +1,1 @@
+(function(){define(["util"],function(C){var A;return A={ACCURACY:1e3,op:{"+":function(C,n){return(C*A.ACCURACY+n*A.ACCURACY)/A.ACCURACY},"-":function(C,n){return(C*A.ACCURACY-n*A.ACCURACY)/A.ACCURACY},"*":function(C,n){return C*A.ACCURACY*n*A.ACCURACY/(A.ACCURACY*A.ACCURACY)},"/":function(C,n){return C*A.ACCURACY/(n*A.ACCURACY)}}},C.extend(A,C.events),A})}).call(this);

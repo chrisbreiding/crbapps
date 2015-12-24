@@ -1,0 +1,1 @@
+(function(){$(function(){var n,t,o,a,l,r;for(o="abcdefghijklmnopqrstuvwxyz",r=o.toUpperCase().split(""),o=o.split(""),a=[0,1,2,3,4,5,6,7,8,9],t=14,n=o.concat(r).concat(a),l=[o[_.random(o.length-1)],r[_.random(r.length-1)],a[_.random(a.length-1)]],t-=3;t--;)l.push(n[_.random(n.length-1)]);return $("#password").html(_.shuffle(l).join(""))})}).call(this);

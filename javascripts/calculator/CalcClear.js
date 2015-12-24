@@ -1,0 +1,1 @@
+(function(){define(["calculation"],function(n){var t;return t=function(){function t(n,t){this.value=null!=n?n:"C",this.type=null!=t?t:"op"}return t.prototype.process=function(){return n.reset()},t}()})}).call(this);

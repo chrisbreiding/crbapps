@@ -1,0 +1,1 @@
+(function(){define(["angular"],function(n){return n.module("calculatorApp",[])})}).call(this);

@@ -1,0 +1,1 @@
+(function(){define(function(){return{scoresTotal:function(n){return n.reduce(function(n,e){return isNaN(+e.score)||(n+=+e.score),n},0)}}})}).call(this);
