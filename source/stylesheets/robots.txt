@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /presidents/
-Disallow: /randomize/
-Disallow: /randpass/
-Disallow: /scorekeeper/

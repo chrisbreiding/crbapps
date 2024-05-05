@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/static/img/favicon.ico" rel="shortcut icon" />
+  {% if renderData.title %}
+    <title>{{renderData.title}}</title>
+  {% else %}
+    <title>{{title}}</title>
+  {% endif %}
+  {% if renderData.description %}
+    <meta name="description" content="{{renderData.description}}"/>
+  {% endif %}
+  <link rel="stylesheet" type="text/css" href="/static/css/shared.css"/>
+  {% if renderData.css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/{{renderData.css}}.css"/>
+  {% endif %}
+</head>
+<body>
+  {% include "./partials/header.njk" %}
+
+  {{ content | safe }}
+</body>
+</html>

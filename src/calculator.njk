@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/static/img/favicon.ico" rel="shortcut icon" />
+  <title>Calculator</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/shared.css"/>
+  <link rel="stylesheet" type="text/css" href="/static/css/calculator.css"/>
+
+  <script src="/static/vendor/angular-loader.js"></script>
+</head>
+<body>
+  {% include "./_includes/partials/header.njk" %}
+
+  <div class="container" ng-controller="CalcCtrl">
+    <ul class="calculator clearfix">
+      <li class="result">&#123;&#123;result&#125;&#125;</li>
+      <li ng-repeat="button in buttons" class="&#123;&#123;button.type&#125;&#125;" ng-click="buttonClick(button)">
+        &#123;&#123;button.value&#125;&#125;
+      </li>
+      <li ng-click="calculate()" class="enter">=</li>
+    </ul>
+  </div>
+
+  <script data-main="/static/js/calculator/main" src="/static/vendor/require.js"></script>
+</body>
+</html>

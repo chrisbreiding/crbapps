@@ -39,14 +39,33 @@ Created as a quick way to get a "random enough" password.
 
 [View app](http://www.crbapps.com/randpass)
 
-### Scorekeeper
+---
 
-Sarah and I needed a way to keep score when playing Rummy and I'm too cool for pen and paper.
+## Development
 
-Utilizes React, CoffeeScript, JSX, and RequireJS.
+### Technologies used:
 
-    Add player boards and scores. Score totals are calculated automatically. Data is saved in local storage.
+- [Netlify CMS](https://www.netlifycms.org/)
+- [Eleventy](https://www.11ty.dev/)
 
-    Try out keyboard shortcuts when editing a score (up & down arrows, enter, tab & shift-tab).
+## Getting Started
 
-[View app](http://www.crbapps.com/scorekeeper)
+### Install dependencies
+
+```
+npm install
+```
+
+### Build the project to generate the first CSS
+
+This step is only required the very first time.
+
+```
+npm run build
+```
+
+### Run Eleventy
+
+```
+npm start
+```

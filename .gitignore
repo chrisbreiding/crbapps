@@ -5,3 +5,11 @@
 *.sublime*
 .sass-cache
 /build/
+
+_site/
+_tmp/
+node_modules/
+.vscode/
+*git/
+.env
+.history
