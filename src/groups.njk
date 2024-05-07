@@ -1,0 +1,29 @@
+---
+layout: default
+renderData:
+  title: "Groups"
+  css: "groups"
+---
+
+<div class="container">
+  <form>
+    <fieldset>
+      <label for="number-of-people"># People</label>
+      <input id="number-of-people" type="number" value="3" min="3" inputmode="numeric" pattern="\d*">
+    </fieldset>
+    <fieldset>
+      <label for="number-per-group"># Per Group</label>
+      <input id="number-per-group" type="number" value="2" min="1" inputmode="numeric" pattern="\d*">
+    </fieldset>
+    <fieldset>
+      <button type="submit" id="make-groups">Make Groups</button>
+    </fieldset>
+  </form>
+
+  <div class="results">
+    <h2>Groups</h2>
+    <ul id="results-list"></ul>
+  </div>
+</div>
+
+<script src="/static/js/groups.js"></script>

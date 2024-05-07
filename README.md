@@ -2,7 +2,7 @@
 
 Single-page mini-apps, experiments, and fun stuff
 
-[http://www.crbapps.com](http://www.crbapps.com)
+[https://www.crbapps.com](https://www.crbapps.com)
 
 ### Aquarium
 
@@ -10,7 +10,7 @@ Experiment using Backbone.
 
     Play with fish. Create them, move them around, change their color.
 
-[View app](http://www.crbapps.com/aquarium)
+[View app](https://www.crbapps.com/aquarium)
 
 ### Calculator
 
@@ -18,7 +18,13 @@ Experiment using AngularJS and RequireJS.
 
     Addition, subtraction, multiplication, division - it's all there.
 
-[View app](http://www.crbapps.com/calculator)
+[View app](https://www.crbapps.com/calculator)
+
+### Groups
+
+Make groups.
+
+[View app](https://www.crbapps.com/groups)
 
 ### List Randomizer
 
@@ -26,7 +32,7 @@ First time messing around to create a "library" with no dependencies.
 
     Randomize a list.
 
-[View app](http://www.crbapps.com/randomize)
+[View app](https://www.crbapps.com/randomize)
 
 ### Random Password
 
@@ -37,7 +43,7 @@ Created as a quick way to get a "random enough" password.
     - Ensures there is a lowercase letter, uppercase letter, and number
     - Length defaults to 14 characters
 
-[View app](http://www.crbapps.com/randpass)
+[View app](https://www.crbapps.com/randpass)
 
 ---
 

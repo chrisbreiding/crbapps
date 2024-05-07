@@ -1,18 +1,11 @@
 ---
 layout: default
 renderData:
-  title: "CRB Apps"
   css: "index"
 ---
 
 <div class="container">
-  <h1>CRB Apps</h1>
-
   <ul>
-    <li><a href="/aquarium">Aquarium</a></li>
-    <li><a href="/calculator">Calculator</a></li>
-    <li><a href="/randomize">List Randomizer</a></li>
-    <li><a href="/randpass">Random Password Creator</a></li>
-    <li><a href="https://scorekeeper.crbapps.com" target="_blank">Score Keeper</a></li>
+    {% include "./_includes/partials/apps.njk" %}
   </ul>
 </div>

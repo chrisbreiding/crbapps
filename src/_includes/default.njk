@@ -5,11 +5,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/static/img/favicon.ico" rel="shortcut icon" />
-  {% if renderData.title %}
-    <title>{{renderData.title}}</title>
-  {% else %}
-    <title>{{title}}</title>
-  {% endif %}
+  <title>{{ renderData.title | title }}</title>
   {% if renderData.description %}
     <meta name="description" content="{{renderData.description}}"/>
   {% endif %}

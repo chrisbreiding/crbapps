@@ -8,6 +8,12 @@ module.exports = function (eleventyConfig) {
   // Copy static assets to /_site
   eleventyConfig.addPassthroughCopy('./src/static')
 
+  eleventyConfig.addFilter('title', (title) => {
+    if (!title) return 'CRB Apps'
+
+    return `${title} | CRB Apps`
+  })
+
   return {
     dir: {
       input: 'src',

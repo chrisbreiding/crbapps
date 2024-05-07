@@ -28,35 +28,31 @@ em {
   max-width: 960px;
 }
 
-.nav {
+header {
   background: #333;
-  overflow-x: scroll;
+  display: flex;
   width: 100%;
 }
 
-  .nav ul {
-    display: flex;
-    margin: 0 auto;
-    width: 100%;
-  }
+header a,
+header a:link,
+header a:visited {
+  color: #d3d3d3;
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.8rem 1.2rem;
+  text-decoration: none;
+}
 
-    .nav li {
-      border-right: solid 1px #555;
-    }
+header a:hover,
+header a:focus {
+  color: #FFF;
+}
 
-    .nav li:first-child {
-      border-left: solid 1px #555;
-    }
-
-      .nav a {
-        color: #d3d3d3;
-        display: block;
-        font-size: 14px;
-        padding: 0.4em 1.2em;
-        text-decoration: none;
-      }
-
-      .nav a:hover,
-      .nav a:focus {
-        color: #FFF;
-      }
+header span {
+  border-left: solid 1px #999;
+  color: #d3d3d3;
+  margin: 0.6rem 0;
+  padding: 0.2rem 1rem;
+}
