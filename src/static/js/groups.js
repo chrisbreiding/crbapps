@@ -18,6 +18,20 @@
     numberPerGroup: Number(numberPerGroupInput.value),
   }
 
+  function selectOnFocus (e) {
+    try {
+      e.target.setSelectionRange(0, e.target.value.length)
+    } catch (err) {
+      try {
+        e.target.setSelectionRange(0, 100)
+      } catch (err) {}
+    }
+
+  }
+
+  numberOfPeopleInput.addEventListener('focus', selectOnFocus)
+  numberPerGroupInput.addEventListener('focus', selectOnFocus)
+
   const onInputChange = (field) => (e) => {
     if (
       typeof e.target.value !== 'string'
