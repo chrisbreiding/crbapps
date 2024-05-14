@@ -14,9 +14,12 @@
   const numberPerGroupInput = document.getElementById('number-per-group')
 
   const state = {
-    numberOfPeople: Number(numberOfPeopleInput.value),
-    numberPerGroup: Number(numberPerGroupInput.value),
+    numberOfPeople: Number(localStorage['groups:numberOfPeople'] || numberOfPeopleInput.value),
+    numberPerGroup: Number(localStorage['groups:numberPerGroup'] || numberPerGroupInput.value),
   }
+
+  numberOfPeopleInput.value = state.numberOfPeople
+  numberPerGroupInput.value = state.numberPerGroup
 
   function selectOnFocus (e) {
     try {
@@ -41,8 +44,6 @@
 
       e.target.value = state[field]
 
-      console.log('nope - reset')
-
       return
     }
 
@@ -59,12 +60,30 @@
     }
 
     state[field] = value
+    localStorage[`groups:${field}`] = value
   }
 
   numberOfPeopleInput.addEventListener('change', onInputChange('numberOfPeople'))
   numberPerGroupInput.addEventListener('change', onInputChange('numberPerGroup'))
 
   const resultsUl = document.getElementById('results-list')
+
+  function displayGroups (groups) {
+    const groupsHtml = groups.map((group, i) => (
+      `<li class="group">
+        <span class="group-label">#${i + 1}</span>
+        <ul class="group-items">
+          <li class="group-item">
+            ${group.join('</li><li class="group-item-joiner">↔</li><li class="group-item">')}
+          </li>
+        </ul>
+      </li>`
+    )).join('')
+
+    resultsUl.innerHTML = groupsHtml
+
+    document.querySelector('.container').classList.add('has-results')
+  }
 
   function makeGroups (e) {
     e.preventDefault()
@@ -100,20 +119,15 @@
       }
     }
 
-    const groupsHtml = groups.map((group, i) => (
-      `<li class="group">
-        <span class="group-label">#${i + 1}</span>
-        <ul class="group-items">
-          <li class="group-item">
-            ${group.join('</li><li class="group-item-joiner">↔</li><li class="group-item">')}
-          </li>
-        </ul>
-      </li>`
-    )).join('')
+    localStorage['groups:lastResults'] = JSON.stringify(groups)
 
-    resultsUl.innerHTML = groupsHtml
+    displayGroups(groups)
+  }
 
-    document.querySelector('.container').classList.add('has-results')
+  const lastResults = JSON.parse(localStorage['groups:lastResults'] || 'null')
+
+  if (lastResults) {
+    displayGroups(lastResults)
   }
 
   document.getElementById('make-groups').addEventListener('click', makeGroups)
