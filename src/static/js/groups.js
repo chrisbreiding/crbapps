@@ -1,4 +1,8 @@
 (() => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/static/js/groups-service-worker.js')
+  }
+
   function shuffle (arr) {
     var len = arr.length, newArr = arr.slice(), i, j, tmp;
     for (i = len - 1; i > 0; i--) {
@@ -29,25 +33,29 @@
         e.target.setSelectionRange(0, 100)
       } catch (err) {}
     }
-
   }
 
   numberOfPeopleInput.addEventListener('focus', selectOnFocus)
   numberPerGroupInput.addEventListener('focus', selectOnFocus)
 
   const onInputChange = (field) => (e) => {
+    function revert () {
+      e.preventDefault()
+      e.target.value = state[field]
+    }
+
     if (
       typeof e.target.value !== 'string'
       || !/\d+/.test(e.target.value)
     ) {
-      e.preventDefault()
-
-      e.target.value = state[field]
-
-      return
+      return revert()
     }
 
     const value = Number(e.target.value)
+
+    if (value === 0) {
+      return revert()
+    }
 
     if (field === 'numberOfPeople' && value < state.numberPerGroup) {
       numberPerGroupInput.value = value
