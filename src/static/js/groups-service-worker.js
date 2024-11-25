@@ -1,10 +1,18 @@
-const cacheName = 'crbapps-groups-v1'
+const cacheName = 'crbapps-groups-v2'
 const files = [
   '/groups/',
-  '/static/img/favicon.ico',
-  '/static/js/groups.js',
   '/static/css/shared.css',
   '/static/css/groups.css',
+  '/static/js/groups.js',
+  '/static/img/favicon.ico',
+  '/static/img/groups/icon-32.png',
+  '/static/img/groups/icon-64.png',
+  '/static/img/groups/icon-96.png',
+  '/static/img/groups/icon-128.png',
+  '/static/img/groups/icon-168.png',
+  '/static/img/groups/icon-192.png',
+  '/static/img/groups/icon-256.png',
+  '/static/img/groups/icon-512.png',
 ]
 
 self.addEventListener('install', (e) => {
