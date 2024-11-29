@@ -38,26 +38,26 @@ self.addEventListener('install', (e) => {
 self.addEventListener('activate', (e) => {
   console.log('[Service Worker] Activate')
 
-  // e.waitUntil(
-  //   caches.keys()
-  //   .then((keyList) => {
-  //     return Promise.all(
-  //       keyList.map((key) => {
-  //         if (key === cacheName) {
-  //           return
-  //         }
-  //         console.log('[Service Worker] Deleting old cache with key:', key)
-  //         return caches.delete(key)
-  //       }),
-  //     )
-  //   })
-  //   .then(() => {
-  //     console.log('[Service Worker] Activation successful')
-  //   })
-  //   .catch((error) => {
-  //     console.error('[Service Worker] Error deleting old caches:', error)
-  //   })
-  // )
+  e.waitUntil(
+    caches.keys()
+    .then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key === cacheName) {
+            return
+          }
+          console.log('[Service Worker] Deleting old cache with key:', key)
+          return caches.delete(key)
+        }),
+      )
+    })
+    .then(() => {
+      console.log('[Service Worker] Activation successful')
+    })
+    .catch((error) => {
+      console.error('[Service Worker] Error deleting old caches:', error)
+    })
+  )
 })
 
 const putInCache = async (request, response) => {
@@ -98,23 +98,3 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(cacheFirst(event.request))
 })
-
-// self.addEventListener('fetch', (e) => {
-//   console.log('[Service Worker] Fetch')
-
-//   e.respondWith(
-//     (async () => {
-//       const r = await caches.match(e.request)
-//       console.log(`[Service Worker] Fetching resource: ${e.request.url}`)
-//       if (r) {
-//         return r
-//       }
-
-//       const response = await fetch(e.request)
-//       const cache = await caches.open(cacheName)
-//       console.log(`[Service Worker] Caching new resource: ${e.request.url}`)
-//       cache.put(e.request, response.clone())
-//       return response
-//     })(),
-//   )
-// })
