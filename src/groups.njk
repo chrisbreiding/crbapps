@@ -2,8 +2,11 @@
 layout: default
 renderData:
   title: "Groups"
-  css: "groups"
-  manifest: "groups"
+  dir: "groups"
+  favicon: "/groups/favicon.ico"
+  sharedCss: "/groups/shared.css"
+  css: true
+  manifest: true
 ---
 
 <div class="container">
@@ -27,4 +30,12 @@ renderData:
   </div>
 </div>
 
-<script src="/static/js/groups.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/groups/service-worker.js')
+    .then((reg) => console.log('SW registered!', reg))
+    .catch((error) => console.log('Error:', error))
+  }
+</script>
+
+<script src="/groups/groups.js"></script>

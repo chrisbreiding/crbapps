@@ -1,8 +1,4 @@
 (() => {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/static/js/groups-service-worker.js')
-  }
-
   function shuffle (arr) {
     var len = arr.length, newArr = arr.slice(), i, j, tmp;
     for (i = len - 1; i > 0; i--) {

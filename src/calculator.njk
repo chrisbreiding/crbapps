@@ -1,20 +1,15 @@
----
-renderData:
-  title: "Calculator"
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/static/img/favicon.ico" rel="shortcut icon" />
-  <title>{{ renderData.title | title }}</title>
-  <link rel="stylesheet" type="text/css" href="/static/css/shared.css"/>
-  <link rel="stylesheet" type="text/css" href="/static/css/calculator.css"/>
+  <link href="/calculator/favicon.ico" rel="shortcut icon" />
+  <title>Calculator</title>
+  <link rel="stylesheet" type="text/css" href="/calculator/shared.css"/>
+  <link rel="stylesheet" type="text/css" href="/calculator/calculator.css"/>
 
-  <script src="/static/vendor/angular-loader.js"></script>
+  <script src="/calculator/angular-loader.js"></script>
 </head>
 <body>
   {% include "./_includes/partials/header.njk" %}
@@ -29,6 +24,6 @@ renderData:
     </ul>
   </div>
 
-  <script data-main="/static/js/calculator/main" src="/static/vendor/require.js"></script>
+  <script data-main="/calculator/main" src="/calculator/require.js"></script>
 </body>
 </html>

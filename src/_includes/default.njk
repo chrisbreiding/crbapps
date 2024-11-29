@@ -2,19 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/static/img/favicon.ico" rel="shortcut icon" />
+  <link rel="shortcut icon" href="/{{renderData.dir}}/favicon.ico" />
+
   {% if renderData.manifest %}
-    <link rel="manifest" href="/static/manifests/{{renderData.manifest}}.webmanifest" />
+    <link rel="manifest" href="/{{renderData.dir}}/{{renderData.dir}}.webmanifest" />
   {% endif %}
+
   <title>{{ renderData.title | title }}</title>
+
   {% if renderData.description %}
-    <meta name="description" content="{{renderData.description}}"/>
+    <meta name="description" content="{{renderData.description}}" />
   {% endif %}
-  <link rel="stylesheet" type="text/css" href="/static/css/shared.css"/>
+
+  <link rel="stylesheet" type="text/css" href="/{{renderData.dir}}/shared.css" />
+
   {% if renderData.css %}
-    <link rel="stylesheet" type="text/css" href="/static/css/{{renderData.css}}.css"/>
+    <link rel="stylesheet" type="text/css" href="/{{renderData.dir}}/{{renderData.dir}}.css" />
   {% endif %}
 </head>
 <body>

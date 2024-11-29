@@ -1,0 +1,58 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img,a img{border:none;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f8f8f8;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+.clearfix:before,.clearfix:after { content:""; display:table; }
+.clearfix:after { clear:both; }
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+header {
+  background: #333;
+  display: flex;
+  width: 100%;
+}
+
+header a,
+header a:link,
+header a:visited {
+  color: #d3d3d3;
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.8rem 1.2rem;
+  text-decoration: none;
+}
+
+header a:hover,
+header a:focus {
+  color: #FFF;
+}
+
+header span {
+  border-left: solid 1px #999;
+  color: #d3d3d3;
+  margin: 0.6rem 0;
+  padding: 0.2rem 1rem;
+}
