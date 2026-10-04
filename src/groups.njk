@@ -10,10 +10,19 @@ renderData:
 ---
 
 <div class="container">
+  <div class="mode-toggle" role="group" aria-label="Group by">
+    <button type="button" id="mode-numbers" class="mode-button is-active">Numbers</button>
+    <button type="button" id="mode-names" class="mode-button">Names</button>
+  </div>
+
   <form>
-    <fieldset>
+    <fieldset class="numbers-field">
       <label for="number-of-people"># People</label>
       <input id="number-of-people" value="3" min="3" inputmode="numeric">
+    </fieldset>
+    <fieldset class="names-field">
+      <label for="names">Names</label>
+      <textarea id="names" rows="6" placeholder="One name per line"></textarea>
     </fieldset>
     <fieldset>
       <label for="number-per-group"># Per Group</label>

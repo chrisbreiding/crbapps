@@ -12,14 +12,44 @@
 
   const numberOfPeopleInput = document.getElementById('number-of-people')
   const numberPerGroupInput = document.getElementById('number-per-group')
+  const namesTextarea = document.getElementById('names')
+  const modeNumbersButton = document.getElementById('mode-numbers')
+  const modeNamesButton = document.getElementById('mode-names')
 
   const state = {
+    mode: localStorage['groups:mode'] === 'names' ? 'names' : 'numbers',
     numberOfPeople: Number(localStorage['groups:numberOfPeople'] || numberOfPeopleInput.value),
     numberPerGroup: Number(localStorage['groups:numberPerGroup'] || numberPerGroupInput.value),
+    names: localStorage['groups:names'] || '',
   }
 
   numberOfPeopleInput.value = state.numberOfPeople
   numberPerGroupInput.value = state.numberPerGroup
+  namesTextarea.value = state.names
+
+  const container = document.querySelector('.container')
+
+  function applyMode () {
+    container.classList.toggle('is-names', state.mode === 'names')
+    modeNumbersButton.classList.toggle('is-active', state.mode === 'numbers')
+    modeNamesButton.classList.toggle('is-active', state.mode === 'names')
+  }
+
+  function setMode (mode) {
+    state.mode = mode
+    localStorage['groups:mode'] = mode
+    applyMode()
+  }
+
+  applyMode()
+
+  modeNumbersButton.addEventListener('click', () => setMode('numbers'))
+  modeNamesButton.addEventListener('click', () => setMode('names'))
+
+  namesTextarea.addEventListener('change', () => {
+    state.names = namesTextarea.value
+    localStorage['groups:names'] = state.names
+  })
 
   function selectOnFocus (e) {
     try {
@@ -94,9 +124,22 @@
 
     resultsUl.innerHTML = ''
 
-    const { numberOfPeople, numberPerGroup } = state
+    const { numberPerGroup } = state
 
-    const people = (new Array(numberOfPeople)).fill().map((_, i) => i + 1)
+    let people
+
+    if (state.mode === 'names') {
+      people = namesTextarea.value
+        .split('\n')
+        .map((name) => name.trim())
+        .filter((name) => name.length > 0)
+
+      if (!people.length) return
+    } else {
+      people = (new Array(state.numberOfPeople)).fill().map((_, i) => i + 1)
+    }
+
+    const numberOfPeople = people.length
     const shuffledPeople = shuffle(people)
     const numGroups = Math.ceil(numberOfPeople / numberPerGroup)
     const groups = (new Array(numGroups)).fill().map((_, i) => {
