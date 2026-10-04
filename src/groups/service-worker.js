@@ -1,4 +1,4 @@
-const cacheName = 'com.crbapps.groups.v2'
+const cacheName = 'com.crbapps.groups.v3'
 const files = [
   '/groups/',
   '/groups/shared.css',
@@ -19,6 +19,8 @@ console.log('[Service Worker] Version:', cacheName)
 
 self.addEventListener('install', (e) => {
   console.log('[Service Worker] Install')
+
+  self.skipWaiting()
 
   e.waitUntil(
     (async () => {
@@ -51,6 +53,7 @@ self.addEventListener('activate', (e) => {
         }),
       )
     })
+    .then(() => self.clients.claim())
     .then(() => {
       console.log('[Service Worker] Activation successful')
     })
