@@ -82,4 +82,4 @@ Pushing to the master branch will automatically deploy the site via Netlify.
 
 ### Service Worker Caching
 
-The service worker caches the app's static assets for it to run as a PWA. In order to update the cache, change the `cacheName` in `service-worker.js`.
+The Groups app is cached as a PWA. In order to update the cache, change the `cacheName` in `service-worker.js`.
