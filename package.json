@@ -3,7 +3,7 @@
     "start": "npm-run-all --parallel css-watch eleventy browsersync",
     "eleventy": "eleventy --watch",
     "debug": "DEBUG=* eleventy",
-    "css": "postcss src/[^_]*/*.css --dir _site/ --base src/",
+    "css": "postcss 'src/[^_]*/*.css' --dir _site/ --base src/",
     "css-watch": "npm run css -- --watch",
     "build": "rm -rf _site && cross-env NODE_ENV=production eleventy && cross-env NODE_ENV=production npm run css",
     "browsersync": "browser-sync start --server '_site' --files '_site' --port 8080 --no-notify --no-open --no-ui --no-ghost-mode",
