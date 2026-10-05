@@ -1,4 +1,4 @@
-const cacheName = 'com.crbapps.groups.v3'
+const cacheName = 'com.crbapps.groups.v4'
 const files = [
   '/groups/',
   '/groups/shared.css',
@@ -42,24 +42,24 @@ self.addEventListener('activate', (e) => {
 
   e.waitUntil(
     caches.keys()
-    .then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (key === cacheName) {
-            return
-          }
-          console.log('[Service Worker] Deleting old cache with key:', key)
-          return caches.delete(key)
-        }),
-      )
-    })
-    .then(() => self.clients.claim())
-    .then(() => {
-      console.log('[Service Worker] Activation successful')
-    })
-    .catch((error) => {
-      console.error('[Service Worker] Error deleting old caches:', error)
-    })
+      .then((keyList) => {
+        return Promise.all(
+          keyList.map((key) => {
+            if (key === cacheName) {
+              return
+            }
+            console.log('[Service Worker] Deleting old cache with key:', key)
+            return caches.delete(key)
+          }),
+        )
+      })
+      .then(() => self.clients.claim())
+      .then(() => {
+        console.log('[Service Worker] Activation successful')
+      })
+      .catch((error) => {
+        console.error('[Service Worker] Error deleting old caches:', error)
+      })
   )
 })
 
